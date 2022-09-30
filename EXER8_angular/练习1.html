@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="js/angular-1.5.5/angular.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <div>
+            <h2>价格计算器（自动）</h2>
+            数量：<input type="number" ng-model="price1">
+            价格：<input type="number" ng-model="count1">
+            <p>总计：{{price1*count1}}</p>
+        </div>
+
+        <div>
+            <h2>价格计算器（手动）</h2>
+            数量：<input type="number" ng-model="price2">
+            价格：<input type="number" ng-model="count2">
+            <button ng-click="getTotalPrice()">计算</button>
+            <p>总计：{{totalPrice}}</p>
+        </div>
+
+        <div>
+            <h2>人员信息表</h2>
+            <ul>
+                <li ng-repeat="person in  persons">{{$odd}}--{{$even}}--{{$first}}--{{$last}}--{{$middle}}--{{person.name}}--{{person.age}}</li>
+            </ul>
+        </div>
+
+        <!-- ng-bind -->
+        <div>
+            <p>{{123}}</p>
+            <p ng-bind="123"></p>
+        </div>
+
+        <!-- ng-show ng-hide -->
+        <div>
+            <button ng-click="switchLaugh()">切换</button>
+            <p ng-show="isLaugh">哈哈哈</p>
+            <p ng-hide="isLaugh">真厉害</p>
+        </div>
+        
+    </div>
+    <script>
+        angular.module('myApp',[])
+            .controller('myController',['$scope',($scope)=>{
+                $scope.price1 = 20
+                $scope.count1 = 1
+
+                $scope.price2 = 12
+                $scope.count2 = 3
+                $scope.totalPrice = 36
+
+                $scope.isLaugh = false;
+
+                $scope.persons = [
+                    {name:'kebi',age:39},
+                    {name:'kebi2',age:39},
+                    {name:'kebi3',age:39},
+                    {name:'kebi4',age:39},
+                    {name:'kebi5',age:39},
+                ]
+
+                $scope.getTotalPrice = function(){
+                    this.totalPrice = this.price2*this.count2
+                }
+
+                $scope.switchLaugh = function(){
+                    $scope.isLaugh = !$scope.isLaugh
+                }
+            }])
+    </script>
+</body>
+</html>

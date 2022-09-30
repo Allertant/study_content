@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <!-- 引入 react-dom ，用于支持 react 操作 DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel ,用于将 jsx 文件转换为 js 文件 -->
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script type="text/babel">
+        class Weather extends React.Component{
+            // 初始化状态，准备数据
+            state = {
+                isHappy:false
+            }
+            render(){
+                const {isHappy} = this.state
+                return <h2 onClick={this.changeWeather}>今天我很{isHappy?'happy':'sad'}</h2>
+            }
+            // 自定义方法：必须要写成箭头函数
+            // 箭头函数没有自己的this,如果使用this，会往外面找，即weather实例
+            // 必须是赋值语句，将这个方法加到weather实例上
+            changeWeather = ()=>{
+                this.setState({isHappy:!this.state.isHappy})
+            }
+        }
+        ReactDOM.render(<Weather/>, document.getElementById('test'))
+
+
+
+    </script>
+</body>
+</html>

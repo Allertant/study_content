@@ -1,0 +1,5 @@
+const TIME = require('./dataFormat.js')
+const dt = new Date()
+console.log(dt)
+const time=TIME.dataFormat(dt)
+console.log(time)

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块和控制器</title>
+    <script src="js/angular-1.5.5/angular.js""></script>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="MyController">
+        <input type="text" ng-model="empName">
+        <p>员工名字1：{{empName}}</p>
+    </div>
+    <div ng-controller="MyController2">
+        <input type="text" ng-model="empName">
+        <p>员工名字1：{{empName}}</p>
+    </div>
+
+    
+
+    <script>
+        // console.log(angular)
+        // // 生成模块对象,作为根作用域对象，只能有一个
+        // var myModule = angular.module('myApp',[])
+        // // 生成作用域对象，可以为多个
+        // myModule.controller('MyController',function($scope){
+        //     $scope.empName = 'tom'
+        // })
+        // myModule.controller('MyController2',function($scope){
+        //     $scope.empName = 'jerry'
+        // })
+
+        // 优化 链式调用
+        // angular.module('myApp',[])
+        //     .controller('MyController',function($scope){
+        //         $scope.empName = 'tom'  // 返回值是模块对象
+        //     })
+        //     .controller('MyController2',function($scope){   //吟诗声明依赖注入，会被代码压缩软件影响效果
+        //         $scope.empName = 'jerry'
+        //     })
+
+             // 压缩代码会将 $scope 替换成简单字符，如何解决：——显示声明依赖注入
+             angular.module('myApp',[])
+            .controller('MyController',['$scope',function($scope){  //angular 进行解析时，会用 '$scope' 替换掉回调函数中的形参
+                $scope.empName = 'tom'  // 返回值是模块对象
+            }])
+            .controller('MyController2',['$scope',function($scope){
+                $scope.empName = 'jerry'
+            }])
+    </script>
+</body>
+</html>

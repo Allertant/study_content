@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/angular-1.2.29/angular.js'></script>
+</head>
+<body ng-app ng-init="age=12">
+    <!-- ng-controller是控制器，需要指定一个控制器构造器，angular会自动new 此函数创建控制器对象 -->
+    <div ng-controller = 'MyController'>
+        <input type="text" ng-model='firstName'>
+        <input type="text" ng-model="lastName">
+        <p>姓名1：{{getName()}}</p>
+        <p>姓名2：{{getName()}}</p>
+        <p>{{age}}</p>
+    </div>
+    
+    <script>
+        // 在控制器函数中声明 $scope ，angular 会自动将 $scope 传入
+        function MyController($scope){ // 形参必须是$scope
+            console.log(this instanceof MyController)  // 由于是构造函数，因此this是实例对象
+            console.log(this.age)
+            console.log($scope)
+            $scope.firstName = 'tom'
+            $scope.lastName = 'jerry'
+            $scope.getName = function(){ 
+                return this.firstName+'-'+$scope.lastName
+            }
+        }
+
+       
+
+    </script>
+</body>
+</html>

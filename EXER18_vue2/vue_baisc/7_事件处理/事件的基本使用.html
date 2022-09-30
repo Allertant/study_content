@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="test">
+        <button v-on:click="getName">点我显示姓名</button>
+        <button @click="getSchool('hello',$event)">点我显示学校</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#test',
+            data:{
+                name:"shiyixi",
+                address:'sicau'
+            },
+            methods:{
+                getName(event){
+                    console.log(event)
+                    console.log(this)
+                    console.log(this.name);
+                    console.log('------------')
+                }, 
+                getSchool(str,event){
+                    console.log(event)
+                    console.log(str)
+                    console.log(this.address)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

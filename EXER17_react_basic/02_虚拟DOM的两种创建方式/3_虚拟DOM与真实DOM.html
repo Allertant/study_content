@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1_使用jsx创建虚拟DOM</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+    
+    <!-- 引入 react 核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入 react-dom ，用于支持 react 操作 DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel ,用于将 jsx 文件转换为 js 文件 -->
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 此处一定要写 babel，表示代码类型为 jsx，并依靠babel翻译为js -->
+    <script type="text/babel">
+        // 创建虚拟 DOM
+        const VDOM = (
+            <h1 id='title'>
+                <span>Hello React</span>
+            </h1>
+        )
+
+        // 渲染虚拟 DOM 到页面 render(虚拟DOM，容器)
+        ReactDOM.render(VDOM,document.getElementById('test'))
+        console.log('虚拟DOM',VDOM)
+        // 1. 关于虚拟DOM，本质是Object类型的对象
+        // 2. 虚拟DOM比较“轻”，真实DOM比较“重”，因为虚拟DOM是React内部使用，需要过多的无用属性
+        // 3. 虚拟DOM最终会被React转换为真实DOM，呈现在页面上
+    </script>
+</body>
+</html>

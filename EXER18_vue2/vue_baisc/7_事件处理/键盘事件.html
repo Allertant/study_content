@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        键盘事件，常用的修饰符，即按下此类键名则触发事件
+        enter,delete,esc,space,tab ; up,down,left,right （tab键会失去当前焦点，因此必须配合keydown使用）
+        注意：也可以使用keyCode,但由于部分浏览器可能不支持，因此不建议使用（不建议使用）
+        ctrl,alt,shift,meta,esc等更适合keydown使用，如果使用keyup，必须在按下该键的同时再按下其他键再松开，才能够正常触发事件
+        Vue.config.keyCodes.自定义键名 = keyCode可以自定义配置修饰符（不建议使用）
+     -->
+    <div id="root">
+        <!-- keyup keydown -->
+        <!-- 要求按下ctrl+y才能触发事件 -->
+        <input type="text" palceholder='请按键输入' @keyup.ctrl.y='demo'>
+    </div>
+    <script>
+        Vue.ProductionTip = false
+        new Vue({
+            el:'#root',
+            data:{
+
+            },
+            methods:{
+                demo(e){
+                    console.log(e.target.value)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

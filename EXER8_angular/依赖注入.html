@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/angular-1.2.29/angular.js'></script>
+</head>
+<body>
+    <button id="btn">点击我</button>
+    <script>
+        window.onload = function(){
+            const btn = document.getElementById('btn')
+            btn.onclick = function(event){ // 这里的event就是一个依赖对象,回调函数有形参就是依赖对象
+                alert(event.clientX)
+            }
+        }
+    </script>
+
+    <script>
+        var arr = [1,2,3,4,5]
+        // 声明式依赖对象，是对命令式的封装
+        console.log(arr.map((item,index)=>{
+            return item+10
+        }))
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+    /*
+        tsconfig.json是ts编译器上的配置文件，ts编译器可以根据它的信息对代码进行编码
+        ** 表示任意目录
+        * 表示任意文件
+        include 表示包含
+        exclude 表示不包含 ** *表示父目录下的所有文件
+        files 表示该数组内的文件需要进行tsc编译
+
+    */
+    "include":[
+        "./src/**/*"
+    ],
+    "exclude":[
+        "./src/hello/**/*"
+    ],
+    "extend":[
+
+    ],
+    // 编译器的选项
+    "compilerOptions":{
+        // target被指定编译的js的版本,module表示模块化规范
+        "target":"es6",
+        "module":"amd",
+        // 指定项目需要用到哪些库
+        // "lib":[]
+        // 用来指定编译后文件所在的目录
+        "outDir":"./dist",
+        // 将编译后的代码合并为一个文件
+        "outFile":"./dist/app.js",
+        // 允许编译js文件
+        "allowJs": true,
+        // 检查js代码是否符合语法规范
+        "checkJs":true,
+        // 是否隐藏注释
+        "removeComments":true,
+        // 不生成编译后的文件，当需要用编译功能而不需要最终文件的时候可以进行设置
+        // "noEmit":true
+        // 当有错误时，不生成编译文件
+        "noEmitOnError":true,
+        // 在js文件中可以使用 use strict 开启严格模式
+        // 在ts文件中可以执行以下文件开启严格模式(注意：如果有模块的导入，会默认自动开启严格模式，不需要进行设置)
+        "alwaysStrict":true,
+        // 不允许隐式的any
+        // 所有严格检查的总开关
+        "strict":false,
+        "noImplicitAny": true,
+        // 不允许不明确类型的this
+        "noImplicitThis": true,
+        // 严格地检查控制
+        "strictNullChecks": true
+    },
+    
+    
+    
+    
+}

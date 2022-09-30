@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/angular-1.5.5/angular.js"></script>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <p>{{'abc'}}</p>
+        <p>{{abc}}</p>
+        <p>{{abc.split('')}}</p>
+        <p>{{abc.split('').reverse()}}</p>
+        <p>{{(abc.split('').reverse()).join('')}}</p>
+    </div>
+    <script src="./js/angular-1.5.5/angular.js"></script>
+    <script>
+        angular.module('myApp',[])
+            .controller('myController',['$scope',function($scope){
+                $scope.abc = 'NBA'
+            }])
+    </script>
+</body>
+</html>

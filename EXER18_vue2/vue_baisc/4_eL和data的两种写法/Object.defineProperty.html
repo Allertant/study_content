@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let number = {
+            value:18
+        }
+        let data = {
+            name:'zhangsan',
+            address:'chnegdu'
+        }
+        Object.defineProperty(data,'age',{
+            // value:number,
+            // writable:true, //  可以被修改
+            enumerable:true,  //可以被枚举
+            configurable:true, // 可以被删除
+
+            //getter
+            get(){
+                console.log('getter~~')
+                return number.value
+            },
+            //setter
+            set(value){
+                console.log('setter~~')
+                number.value = value
+            }
+        })
+
+    </script>
+</body>
+</html>

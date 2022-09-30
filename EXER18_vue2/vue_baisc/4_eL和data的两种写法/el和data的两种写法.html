@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="test">
+        <h2>hello,{{name}}</h2>
+        <h2>{{$mount}}</h2>
+    </div>
+    <script>
+
+        Vue.ProductionTip = false;
+        // el的两种写法
+        const vm = new Vue({
+            // el:'#test',
+            // data的两种写法
+            // 1. 第一种——声明式
+            // data:{
+            //     name:'shiyixi'
+            // }
+            // 函数式
+            data(){
+                return {
+                    name:'shiyixi'
+                }
+            }
+        })
+        vm.$mount('#test')
+
+        
+    </script>
+</body>
+</html>

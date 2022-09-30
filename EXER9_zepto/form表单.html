@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="post">
+        <input type="text" name="val" value="kobe">
+        <input type="password" name="pw" value="123">
+        <input type="checkbox" checked="checked" name="rember">
+        <input type="submit" value="按钮" name="anniu">
+    </form>
+    <script src="js/zepto.js"></script>
+    <script src="js/touch.js"></script>
+    <script>
+        $(function(){
+            // 将表单选项转换为url-encoded字符串：name:value 键值对形式
+            // button不能使用，未选中的checkbox不能提交
+            // 主要用于 post 请求，也能够封装为字符串
+            var result = $('form').serialize()
+            console.log(result)
+
+            // serializeArray() 封装为数组
+            result = $('form').serializeArray()
+            console.log(result)
+
+            // submit() 方法
+            $('form').submit(function(event){
+                event.preventDefault();
+                alert('我暂时不想提交')
+            })
+        })
+    </script>
+</body>
+</html>

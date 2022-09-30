@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        计算属性的优点：
+            做了缓存，每取一次数据不需要重新调用函数；缓存做了之后，在vm身上有了一个属性，由getter计算的来
+                - 当第一次加载时，getter加载一次
+                - 当计算属性依赖的数据发生改变时，getter会调用一次
+            注意：
+                在对setter定义时，一定要将计算属性依赖的数据进行修改
+     -->
+    <div id="root">
+        <input type="text" v-model="firstname">
+        <input type="text" v-model="lastname">
+        <p>{{fullName}}</p>
+    </div>
+    <script>
+        Vue.ProductionTip = false;
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                firstname:'shi',
+                lastname:'yixi'
+            },
+            computed:{
+                fullName:{
+                    // vm对getter进行了设计，将其this指向为vm实例
+                    get(){
+                        return this.firstname + '-' + this.lastname;
+                    },
+                    set(value){
+                        const arr = value.split('-')
+                        this.firstname = arr[0]
+                        this.lastname = arr[1]
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

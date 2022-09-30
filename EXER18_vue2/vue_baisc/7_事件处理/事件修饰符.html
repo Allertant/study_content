@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .div1{
+            width:100px;
+            height:60px;
+            background-color: pink;
+        }
+        .div2{
+            width:100px;
+            height:20px;
+            background-color: #bfa;
+        }
+        .div3{
+            width:100px;
+            height:50px;
+            background-color: #000;
+            color:#fff;
+        }
+        .div4{
+            width:400px;
+            height: 400px;
+            background-color: pink;
+            /* li不够放时，自动形成滚动条 */
+            overflow:auto;
+        }
+        .div4 li{
+            width:400px;
+            height:300px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- .prevent 阻止事件默认行为-->
+        <a href="http://www.baidu.com" @click.prevent="demo1">点我去百度</a>
+        <br>
+        <!-- .stop 阻止了事件冒泡-->
+        <div class="div1" @click="demo3">div1
+            <!-- 事件修饰符可以连续调用 -->
+            <a href="http://www.baidu.com" class="div2" @click.stop.prevent="demo2">
+                百度
+            </a>
+        </div>
+        <br>
+        <!-- once 实践只会执行一次 -->
+        <div class="div3" @click.once="demo4">
+            我只会执行一次
+        </div>
+        <br>
+        <!-- capture 使用事件的捕获形式 -->
+        <!-- 不加capture时，事件冒泡从内部往外部执行，加capture后，捕获阶段的时候就会执行函数 -->
+        <div class="div1" @click.capture="demo5"> 外部
+            <div class="div2" @click="demo6">
+                内部
+            </div>
+        </div>
+        <br>
+        <!-- self:只有当event.target是自己时才会执行函数 -->
+        <div class="div1" @click.self="demo5"> 外部
+            <div class="div2" @click="demo6">
+                内部
+            </div>
+        </div>
+        <br>
+
+        <!-- passive:事件的默认行为立即执行，不会等到回调函数执行完后再执行 -->
+        <!-- 加上passive之后，会先执行默认行为，再执行回调函数，即触发滚动时先滚动条行动 -->
+        <ul class="div4" @wheel.passive="demo7">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+    </div>
+    <script>
+         Vue.ProductionTip = false;
+         new Vue({
+            el:'#root',
+            data:{
+
+            },
+            methods:{
+                demo1(){
+                    console.log('已经正在前往百度服务器')
+                }, 
+                demo2(){
+                    console.log('我阻止了事件冒泡和默认行为')
+                }, 
+                demo3(){
+                    console.log('我被阻止了事件冒泡')
+                }, 
+                demo4(){
+                    console.log('我只会执行一次')
+                }, 
+                demo5(){
+                    console.log('外部执行了')
+                },
+                demo6(){
+                    console.log('内部执行了')
+                },
+                demo7(){
+                    for(let i=0;i<10000;i++){
+                        console.log('@')
+                    }
+                    // console.log('@')
+                }
+            }
+
+         });
+    </script>
+</body>
+</html>

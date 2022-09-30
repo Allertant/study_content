@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+    
+    <!-- 引入 react 核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入 react-dom ，用于支持 react 操作 DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel ,用于将 jsx 文件转换为 js 文件 -->
+    <script src="../js/babel.min.js"></script>
+
+    <!-- 此处一定要写 babel，表示代码类型为 jsx，并依靠babel翻译为js -->
+    <script type="text/babel">
+        const courseList = ['Angular','Vue','React']
+        // 创建虚拟 DOM
+        const VDOM = (
+            <div>
+                <h1>前端js框架列表</h1>
+                <ul>{
+                    courseList.map((item,index)=>{
+                        return <li key={index}>{item}</li>
+                    })
+                }
+                </ul>
+            </div>
+        )
+
+        // 渲染虚拟 DOM 到页面 render(虚拟DOM，容器)
+        ReactDOM.render(VDOM,document.getElementById('test'))
+    </script>
+</body>
+</html>

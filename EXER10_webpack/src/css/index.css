@@ -1,0 +1,8 @@
+/* 这里有flex布局，由于不是所有浏览器都支持，因此需要做兼容性处理，用到的工具是postcss-loader */
+.box1{
+    display: flex;
+    width:100px;
+    height:100px;
+    background-image: url(../image/1.jpeg);
+    background-size: cover;
+}

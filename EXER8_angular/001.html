@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <p>您输入的内容：<span></span></p>
+    <script src="js/jquery/jquery-1.11.1.js"></script>
+    <script>
+        $(function(){  //$()同document.ready()，表示页面结构加载完毕（不包括图片等）
+            $('input').keyup(function(){  //键盘抬起时，更新页面内容
+                var value = this.value;  //$(this).val()
+                $('p span').html(value)
+            })
+        })
+    </script>
+</body>
+</html>

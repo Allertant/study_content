@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/3.6.1/jquery.js"></script>
+</head>
+<body>
+    <button id="btnGET">GET</button>
+    <button id="btnPOST">POST</button>
+    <button id="btnDELETE">DELETE</button>
+    <button id="btnJSONP">JSONP</button>
+
+
+    <script>
+        $('#btnGET').on('click',function(){
+            $.ajax({
+                type:'GET',
+                url:'http://localhost/api/get',
+                data:{name:'zs',age:20},
+                success:function(res){
+                    console.log(res)
+                }
+            })
+        })
+        $('#btnPOST').on('click',function(){
+            $.ajax({
+                type:'POST',
+                url:'http://localhost/api/post',
+                data:{bookname:"水浒传",author:"施耐庵"},
+                success:function(res){
+                    console.log(res)
+                }
+            })
+        })
+        $('#btnDELETE').on('click',function(){
+            $.ajax({
+                type:'DELETE',
+                url:'http://localhost/api/delete',
+                success:function(res){
+                    console.log(res)
+                }
+            })
+        })
+        $('#btnJSONP').on('click',function(){
+            $.ajax({
+                type:'GET',
+                url:'http://localhost/api/jsonp',
+                dataType:'jsonp',
+                success:function(res){
+                    console.log(res)
+                }
+            })
+        })
+    </script>
+</body>
+</html>

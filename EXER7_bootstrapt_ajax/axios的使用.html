@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+</head>
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+    <script>
+        const btns = document.querySelectorAll('button')
+        axios.defaults.baseURL = 'http://127.0.0.1'
+        btns[0].onclick = function(){
+            axios.get('/axios-server',{
+                params:{
+                    id:100,
+                    vip:7
+                },
+                headers:{
+                    name:'shiyixi',
+                    age:20
+                }
+            }).then(value=>{
+                console.log(value)
+            })
+        }
+        btns[1].onclick = function(){
+            axios.post('/axios-server',{
+                    username:'admin',
+                    password:'admin'
+                },{
+                params:{
+                    id:200,
+                    vip:0
+                },
+                headers:{
+                    height:200,
+                    weight:180
+                },
+                
+            })
+        }
+        btns[2].onclick = function(){
+            axios({
+                method:'POST',
+                url:'/axios-server',
+                params:{
+                    id:200,
+                    vip:7
+                },
+                headers:{
+                    height:200,
+                    weight:200
+                },
+                data:{
+                    username:'admin',
+                    password:'admin'
+                }
+            }).then(response=>{
+                console.log(response.status);
+                console.log(response.statusText)
+                console.log(response.headers)
+                console.log(response.data);
+                console.log(response)
+            })
+        }
+    </script>
+</body>
+</html>

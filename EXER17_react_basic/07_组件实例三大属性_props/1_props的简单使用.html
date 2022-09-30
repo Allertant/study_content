@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <!-- 引入 react-dom ，用于支持 react 操作 DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel ,用于将 jsx 文件转换为 js 文件 -->
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+            
+            render(){
+                const {name,gender,age} = this.props 
+                return (
+                    <ul>
+                        <li>性名：{name}</li>
+                        <li>性别：{gender}</li>
+                        <li>年龄：{age}</li>
+                    </ul>
+                )
+            }
+        }
+        ReactDOM.render(<MyComponent name='zhangsan' gender='male' age='15'/>,document.getElementById('test1'))
+        ReactDOM.render(<MyComponent name='lisi' gender='male' age='16'/>,document.getElementById('test2'))
+        ReactDOM.render(<MyComponent name='wangwu' gender='female' age='19'/>,document.getElementById('test3'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn{
+            width:200px;
+            height:200px;
+            background-color: red;
+            border-radius:20px;
+            text-align:center;
+            line-height:200px;
+            font-size:30px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点击获取数据</button>
+    <script src="js/zepto.js"></script>
+    <script src="js/touch.js"></script>
+    <script>
+        $(function(){
+            // 发送请求
+            function sendXML(){
+                return $.ajax({
+                    method:'GET',
+                    url:'http://localhost:3000/',
+                    dataType:'json',
+                    success:(data)=>{
+                        console.log(data)
+                    },
+                    error:(error)=>{
+                        console.log(error)
+                    }
+                })
+            }
+            
+            let isLoading = false
+            let xmlrequest = null;
+
+            $('#btn').on('touchstart',function(){
+                // 判断是否正在发送ajax请求
+                if(isLoading) return
+                isLoading = true;
+                $(this).css('background','gray')
+                // // 给按钮设置disabled属性，仅在click事件下生效，移动端下不能生效
+                // $(this).css('disabled',true)
+
+                setTimeout(function(){
+                    $('#btn').css('background','red')
+                    isLoading = false
+                },2000)
+                if(!xmlrequest){ //上一次的请求发送已经完成或者第一次发送请求
+                    xmlrequest = sendXML()
+                }else{
+                    xmlrequest.abort()
+                    xmlrequest = sendXML()
+                }
+            })  
+        })
+    </script>
+</body>
+</html>

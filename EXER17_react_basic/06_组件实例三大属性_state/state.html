@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <!-- 引入 react-dom ，用于支持 react 操作 DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel ,用于将 jsx 文件转换为 js 文件 -->
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script type="text/babel">
+        class Weather extends React.Component{
+            constructor(props){
+                super(props)
+                this.state={
+                    isHappy:false
+                }   
+                this.changeWeather = this.changeWeather.bind(this)
+            }
+
+            // render()初始化时调用一次，以后每当state中的数据改变时调用一次，重新构造一次页面
+            render(){
+                const {isHappy} = this.state
+                // click执行某一个对象，由于在类内部，因此使用this进行调用
+                return <h2 onClick={this.changeWeather}>今天我很{isHappy?'happy':'sad'}</h2>
+            }
+            changeWeather(){
+                // 这里的this指向undefined:
+                    // 首先在类内部，应当由类实例调用，则this指向类实例
+                    // 而该函数没有被类实例调用，而是通过onclick的指向，进行了简单调用，应当指向window
+                    // 加上类方法使用了 use strict 模式，不能指向window，因此结果就是undefined              
+                // console.log(this instanceof Weather)++
+                // console.log(this)
+                // 必须使用setState修改state中的属性
+                this.setState({isHappy:!this.state.isHappy})
+            }
+        }
+        ReactDOM.render(<Weather/>, document.getElementById('test'))
+
+
+
+    </script>
+</body>
+</html>

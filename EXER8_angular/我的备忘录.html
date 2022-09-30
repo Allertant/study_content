@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="myController">
+        <h2>我的备忘录</h2>
+        <div>
+            <input type="text" ng-model='content'>
+            <button ng-click="add()">添加</button>
+        </div>
+        
+        <!-- 即便不在列表中，也可以使用ng-repeat -->
+        <div ng-repeat="todo in todos">
+            <input type="checkbox" ng-model="todo.isChecked">
+            <span>{{todo.name}}</span>
+        </div>
+
+        <button ng-click="remove()">删除选中的记录</button>
+        
+    </div>  
+    <script src="js/angular-1.5.5/angular.js"></script>
+    <script src="module/app2.js"></script>
+</body>
+</html>

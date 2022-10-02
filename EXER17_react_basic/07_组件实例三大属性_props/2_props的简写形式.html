@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <!-- 引入 react-dom ，用于支持 react 操作 DOM -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入 babel ,用于将 jsx 文件转换为 js 文件 -->
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入proto-type文件，用于对标签数据进行限制 -->
+    <script src="../js/prop-types.js"></script>
+</head>
+<body>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+    <div id="test4"></div>
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+
+            // 构造器问题：一般用于接收props，如果希望在构造函数中接收props，必须在constructor和super函数中传入props
+            // 否则，在构造器中通过this.props获取props时会出现undefined的情况。因此，在不需要通过在构造器中获取this.props
+            // 时，可以不用定义构造器，对于其他功能的使用没有影响
+            constructor(props){
+                
+                super(props)
+                console.log(this.props)
+                
+            }
+
+
+
+            static propTypes = {
+                name:PropTypes.string.isRequired,
+                age:PropTypes.number,
+                gender:PropTypes.string,
+                speak:PropTypes.func  // 限制为一个函数
+            }
+
+            static defaultProps = {
+                age:18,
+                gender:'male'
+            }
+
+            render(){
+                const {name,gender,age} = this.props 
+                // console.log(this.props)
+                return (
+                    <ul>
+                        <li>性名：{name}</li>
+                        <li>性别：{gender}</li>
+                        <li>年龄：{age}</li>
+                    </ul>
+                )
+            }
+        }
+        
+        
+
+        // 普通写法，不适用于大批量数据
+        ReactDOM.render(<MyComponent name="zhangsan" />,document.getElementById('test1'))
+  
+    </script>
+</body>
+</html>

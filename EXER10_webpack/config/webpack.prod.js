@@ -7,6 +7,7 @@ const cssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin")
+const WorkboxPlugin = require("workbox-webpack-plugin");
 
 const threads = os.cpus().length
 
@@ -168,6 +169,12 @@ plugins:['@babel/plugin-transform-runtime']
             // as: "script",
             rel: 'prefetch' // prefetch兼容性更差
           }),
+        new WorkboxPlugin.GenerateSW({
+        // 这些选项帮助快速启用 ServiceWorkers
+        // 不允许遗留任何“旧的” ServiceWorkers
+        clientsClaim: true,
+        skipWaiting: true,
+        }),
 
     ],
     // 开发服务器——不会输出资源，在内存中编译打包                 

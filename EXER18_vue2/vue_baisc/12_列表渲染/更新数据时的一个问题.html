@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button @click="fun1">点击更新数据内容</button>
+        <br>
+        <ul>
+            <li v-for="(p,index) in Persons" :key="p.id">
+                {{p.name}} --- {{p.age}} --- {{p.gender}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        Vue.ProductionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                Persons:[
+                    {name:'马冬梅',age:18,gender:'female'},
+                    {name:'周冬雨',age:33,gender:'female'},
+                    {name:'周杰伦',age:22,gender:'male'},
+                    {name:'韦罗伦',age:19,gender:'male'},
+                ],
+            },
+            methods:{
+                fun1(){
+                    // 由于数组元素是一个对象，即使更新了，Vue也无法检测到数据的改变，因此页面上不会有数据内容的变化
+                    this.Persons[0] = {name:'马老师',age:50,gender:"male"}
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

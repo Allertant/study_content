@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- v-show,控制页面元素是否可以显示，原理是设置了display:none -->
+        <h2 v-show="isShow">angular</h2>
+        <h2 v-show="isShow">React</h2>
+        <h2 v-show="isShow">Vue</h2>
+        <br><hr>
+        <!-- v-if,如果为false,那么在页面上不会留下任何痕迹 -->
+        <h2 v-if="true">北京</h2>
+        <h2 v-if="1===1">上海</h2>
+        <h2 v-if="1>=0">深圳</h2>
+
+        <br><hr>
+        <!-- v-if v-else-if v-else -->
+        <h2 v-if="n===1">中国</h2>
+        <h2 v-else-if="n===2">美国</h2>
+        <h2 v-else-if="n===3">俄罗斯</h2>
+        <h2 v-else>未知地区</h2>
+
+        <!-- v-if 配合 template使用，且只能两者一起配合使用 -->
+        <!-- 使用后的效果就是，在页面上不会留下template结构，只会由里面三个h2的结构 -->
+        <template v-if="isDisplay">
+            <h2>shiyixi</h2>
+            <h2>shiyixi</h2>
+            <h2>shiyixi</h2>
+        </template>
+    </div>
+    <script>
+        Vue.ProductionTip = false;
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                isShow:true,
+                n:1,
+                isDisplay:true
+            }
+        })
+    </script>
+</body>
+</html>

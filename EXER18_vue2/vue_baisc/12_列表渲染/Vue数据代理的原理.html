@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 这是我们自定义的数据检测模型，相对与官方Vue中的有很大差距，
+        // 1. 没有将data中的数据添加到vm身上,使用起来不方便
+        // 2. 无法处理:data中不止含有键值对,当出现对象嵌套对象时无法处理
+        let data = {
+            name:'shiyixi',
+            age:19
+        }
+
+        // 数据代理模型
+        let obs = new ObjectServe(data)
+
+        // 模拟Vue中的vm实例对象
+        let vm = {}
+
+        vm._data = data = obs
+
+        // 用于处理代理数据
+        function ObjectServe(data){
+            // 获取数据的所有属性名
+            let arr = Object.keys(data);
+            arr.forEach((s)=>{
+                //  this 这里指的是ObjectServe实例对象
+                Object.defineProperty(this,s,{
+                    get(){
+                        return data[s]
+                    },
+                    set(val){
+                        data[s] = val
+                    }
+                })
+            })
+        }
+    </script>
+</body>
+</html>

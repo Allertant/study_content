@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 列表渲染——数组 -->
+        <div>
+            <h2>人员信息</h2>
+            <ul>
+                <!-- i in arr / i of arr -->
+                <li v-for="(p,index) in nameArr" :key="index">
+                    {{p.name}} --- {{p.age}}
+                </li>
+            </ul>
+        </div>
+
+        <br><hr><br>
+        <!-- 列表渲染——对象 -->
+        <div>
+            <h2>个人信息</h2>
+            <ul>
+                <!-- i in arr / i of arr -->
+                <li v-for="(content,index) in nameObject" :key="index">
+                    {{index}} --- {{content}}
+                </li>
+            </ul>
+        </div>
+
+        <br><hr><br>
+        <!-- 列表渲染——字符串 -->
+        <div>
+            <h2>字符串信息</h2>
+            <ul>
+                <!-- i in arr / i of arr -->
+                <li v-for="(char,index) in nameStr" :key="index">
+                    {{index}} --- {{char}}
+                </li>
+            </ul>
+        </div>
+
+        <br><hr><br>
+        <!-- 列表渲染——指定次数 -->
+        <div>
+            <h2>指定次数渲染</h2>
+            <ul>
+                <!-- i in arr / i of arr -->
+                <li v-for="(number,index) in 9" :key="index">
+                    {{index}} --- {{number}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        Vue.ProductionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                nameArr:[
+                    {id:'001',name:'zhangsan',age:20},
+                    {id:'002',name:'lisi',age:21},
+                    {id:'003',name:'wangwu',age:22}
+                ],
+                nameObject:{
+                    name:'shiyixi',
+                    address:'shanghai',
+                    age:'24'
+                },
+                nameStr:'shiyixi'
+            }
+
+        })
+    </script>
+</body>
+</html>

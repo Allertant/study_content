@@ -42,3 +42,17 @@ promise.then(() => {
 // 检测是否智能导入了includes方法
 const arr = [1,2,3,4]
 console.log(arr.includes(1))
+
+// 注册serviceWooker，使得让网页在浏览器端缓存，即使断网也能够访问
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log("SW registered: ", registration);
+      })
+      .catch((registrationError) => {
+        console.log("SW registration failed: ", registrationError);
+      });
+  });
+}

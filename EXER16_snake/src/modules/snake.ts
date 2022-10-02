@@ -30,7 +30,7 @@ class Snake{
                 // value = this.X -10
                 value -= 20
             }else{
-                // value = this.Y + 10
+                // value = this.X + 10
                 value += 20
             }
 

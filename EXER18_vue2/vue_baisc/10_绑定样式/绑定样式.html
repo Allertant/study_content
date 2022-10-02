@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .basic{
+            width:500px;
+            height:200px;
+            border: 1px solid #000;
+        }
+        .div1{
+            background-color: #bfa;
+        }
+        .div2{
+            background-color: pink;
+        }
+        .div3{
+            background-color: lightblue;
+        }
+        .shi1{
+            border-radius:20px;
+        }
+        .shi2{
+            color:red
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="basic" id="root">
+        <div class="basic" :class="class1" @click="changeClass">
+            div1
+        </div>
+        <br>
+        <br>
+        <div class="basic" :class="divs2">
+            div2
+        </div>
+        <br>
+        <br>
+        <div class="basic" :class="divs3">
+            div3
+        </div>
+        <br>
+        <br>
+        <!-- 给div绑定style属性 -->
+        <div class="basic" :style="{fontSize:fontsize+'px'}">
+            div4
+        </div>
+        <br>
+        <br>
+        <div class="basic" :style="style1">
+            div5
+        </div>
+        <br>
+        <br>
+        <div class="basic" :style="styleArr">
+            div6
+        </div>  
+    </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                divs1:['div1','div2','div3'],
+                // 数组，适用于数量不确定，名字不确定
+                divs2:['div1','shi1','shi2'],
+                number:0,
+                fontsize:50,
+                // 对象，适用于数量和名字确定，但需要动态决定是否需要使用的情况
+                divs3:{
+                    shi1:true,
+                    shi2:false
+                },
+                style1:{
+                    fontSize:'40px',
+                    color:'red'
+                },
+                style2:{
+                    backgroundColor:'orange'
+                },
+                styleArr:[
+                    {
+                        fontSize:'40px',
+                        color:'red'
+                    },
+                    {
+                        backgroundColor:'orange'
+                    }
+                ]
+
+            },
+            computed:{
+                class1(){
+                    return this.divs1[++this.number % this.divs1.length]
+                }
+            },
+            methods:{
+                changeClass(){
+                    this.number++
+                }
+            }
+
+
+        });
+    </script>
+    
+</body>
+</html>

@@ -10,11 +10,14 @@
     <script src="../js/react-dom.development.js"></script>
     <!-- 引入 babel ,用于将 jsx 文件转换为 js 文件 -->
     <script src="../js/babel.min.js"></script>
+    <!-- 引入proto-type文件，用于对标签数据进行限制 -->
+    <script src="../js/prop-types.js"></script>
 </head>
 <body>
     <div id="test1"></div>
     <div id="test2"></div>
     <div id="test3"></div>
+    <div id="test4"></div>
     <script type="text/babel">
         class MyComponent extends React.Component {
             
@@ -24,14 +27,45 @@
                     <ul>
                         <li>性名：{name}</li>
                         <li>性别：{gender}</li>
-                        <li>年龄：{age}</li>
+                        <li>年龄：{age+1}</li>
                     </ul>
                 )
             }
         }
-        ReactDOM.render(<MyComponent name='zhangsan' gender='male' age='15'/>,document.getElementById('test1'))
-        ReactDOM.render(<MyComponent name='lisi' gender='male' age='16'/>,document.getElementById('test2'))
-        ReactDOM.render(<MyComponent name='wangwu' gender='female' age='19'/>,document.getElementById('test3'))
+        // 对标签属性值进行限制
+        MyComponent.propTypes = {
+            name:PropTypes.string.isRequired,
+            age:PropTypes.number,
+            gender:PropTypes.string,
+            speak:PropTypes.func  // 限制为一个函数
+        }
+        // 对标签属性的默认值进行设置(可以让部分属性值可以不传参)
+        MyComponent.defaultProps = {
+            age:18,
+            gender:'male'
+        }
+
+        // 普通写法，不适用于大批量数据
+        ReactDOM.render(<MyComponent name="zhangsan" gender='male' age={15}/>,document.getElementById('test1'))
+        ReactDOM.render(<MyComponent name='lisi' gender='male' age={16}/>,document.getElementById('test2'))
+        ReactDOM.render(<MyComponent name='wangwu' gender='female' age={19}/>,document.getElementById('test3'))
+
+        // 使用展开运算符，可以和AJAX配合使用
+        const p = {name:"shiyixi",gender:'male',age:19,speak:speak}
+        ReactDOM.render(<MyComponent {...p}/>,document.getElementById('test4'))
+
+        // 补充展开运算符 ... 的相关者知识
+        // 展开运算符在Js文件中不能够展开对象，而是展开数组，一般应用于数据的展开合并等操作
+        // 而对象使用展开运算符，一般用于深拷贝对象
+        const p1 = {...p}  // 深拷贝对象
+        const p2 = {...p,age:20} // 在拷贝对象时，也可以对部分数据进行修改
+        // 但是在React和Babel中，这里却做到了展开，注意
+        //    {...p} 和上面的拷贝对象不同，实际的js语句仅为大括号内部的表达式（不包括大括号），结构不同
+        // 这是因为jsx和babel语法下做了支持，使能够对展开对象的功能做了支持
+
+        function speak(){
+            return 'I want to say something to yours'
+        }
     </script>
 </body>
 </html>

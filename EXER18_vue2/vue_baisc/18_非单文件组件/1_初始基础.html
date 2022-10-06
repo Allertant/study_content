@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初识基础</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <hello-world></hello-world>
+        <school></school>
+        <hr>
+        <student></student>
+    </div>
+    <script>
+        
+        Vue.config.productionTip = false
+        // 可以不加Vue.extend，实际注册时，Vue会为其补加上
+        const world = {
+            // 在开发工具中显示为name所对应的值
+            name:'hello',
+            data(){
+                return {
+                    msg:'hello'
+            }
+            },
+            template:`
+                <div>
+                    <h2>{{msg}}</h2>
+                </div>
+            `
+        }
+        // 全局注册组件
+        // 多单词定义组件名，使用-连接（大驼峰命名法在webpack环境中才会生效）
+        Vue.component('hello-world',world)
+
+        const school = Vue.extend({
+            data(){
+                return {
+                    schoolName:'sicau',
+                    schoolAddress:'yaAn'
+            }
+            },
+            template:`
+                <div>
+                    <h2>{{schoolName}}</h2>
+                    <h2>{{schoolAddress}}</h2>
+                </div>
+            `
+        })
+        const student = Vue.extend({
+            data(){
+                return {
+                    studentName:'shiyixi',
+                    studentAge:18
+                }
+            },
+            template:`
+                <div>
+                    <h2>{{studentName}}</h2>
+                    <h2>{{studentAge}}</h2>
+                </div>
+            `
+        })
+        new Vue({
+            el:'#root',
+            components:{
+                school,
+                student
+            }
+        })
+    </script>
+</body>
+</html>

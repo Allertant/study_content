@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+</head>
+<body>
+    <h2>17.0.1版本的新生命周期图</h2>
+    <div id="test">
+        
+    </div>  
+    <script type="text/babel">
+        class Count extends React.Component{
+            constructor(props){
+                console.log('Count-constructor');
+                super(props)
+                this.state={count:0}
+            }
+
+            // count + 1
+            add = ()=>{
+                let {count} = this.state
+                this.setState({count:count+1})
+            }
+
+            // 销毁组件
+            death = ()=>{
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+            }
+
+            // 强制更新
+            force = ()=>{
+                this.forceUpdate()
+            }
+
+            // 新版本生命周期,横亘于constructor/setState 和 render之间，不论第一次挂载还是更新都需要通过这个函数
+            // 派生状态
+            // 如果过多使用，会造成代码冗余，不建议使用
+            static getDerivedStateFromProps(props,state){
+                // 若state的值在任何时候都取决于props,那么就可以使用
+                console.log('Count-getDerivedStateFromProps')
+                // console.log(props,state)
+                // 返回null/状态对象即props
+                // return props
+                return null
+            }
+
+            // 在更新前获取快照(此方法并不常用)
+            getSnapshotBeforeUpdate(preProps,preState){
+                console.log('Count-getSnapshotBeforeUpdate')
+                console.log(preProps,preState)
+                // 返回的内容将传递到componentDidUpdate
+                return 'shiyixi'
+            }
+
+            // 组件即将挂载
+            // Unsafe_componentWillMount(){
+            //     console.log('Count-componentWillMount')
+            // }
+
+            // 挂载
+            render(){
+                console.log('Count-render')
+                return (
+                    <div>
+                        <h2>n：{this.state.count}</h2>
+                        <button onClick={this.add}>点我+1</button>
+                        <button onClick={this.death}>卸载组件</button>
+                        <button onClick={this.force}>不更改任何状态的数据，强制更新</button>
+                    </div>
+                )
+            }
+
+            // 组件挂载完毕
+            componentDidMount(){
+                console.log('Count-componentDidMount')
+                console.log('---------------------------------------------')
+            }
+
+            // 组件即将卸载
+            componentWillUnmount(){
+                console.log('Count-componentWillUnmount')
+            }
+
+            // setState后续钩子调用
+
+            // 组件更新的阀门（如果不写，React会默认提供一个返回值为true的函数）
+            // shouldComponentUpdate(){
+            //     console.log('--------------------------------------------')
+            //     console.log('Count-shouldComponentUpdate')
+            //     return true  // 允许更新
+            // }
+
+            // 组件即将更新前
+            // Unsafe_componentWillUpdate(){
+            //     console.log('Count-componentWillUpdate')
+            // }
+
+            // 组件更新完毕
+            componentDidUpdate(preProps,preState,snapshot){
+                console.log('Count-componentDidUpdate',preState,preState,snapshot)
+                console.log('---------------------------------------------')
+            }
+
+        }
+        ReactDOM.render(<Count count={199}/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

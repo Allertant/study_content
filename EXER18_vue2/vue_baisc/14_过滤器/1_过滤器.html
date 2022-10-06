@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.5/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 过滤器配合插值语法 -->
+        <h2>{{fmTime}}</h2>
+        <h2>{{getFmTime()}}</h2>
+        <h2>{{nowDate | ftTimeFilter}}</h2>
+        <h2>{{nowDate | ftTimeFilter('YYYY.MM.DD HH.mm.ss') | mySlice}}</h2>
+        <!-- 过滤器配合v-bind(v-model不能够使用) -->
+        <h2 :x="str | mySlice"></h2>
+    </div>
+    <hr>
+    <div id="root2">
+        <h2>{{str | mySlice}}</h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        // 配置全局的过滤器，使得每个vue实例都能够使用
+        Vue.filter('mySlice',function(value){
+            return value.slice(0,4)
+        })
+        new Vue({ 
+            el:'#root',
+            data:{
+                nowDate:new Date(),
+                msg:'hello,shiyixi',
+                str:'shiyixi'
+            },
+            filters:{
+                // 配置局部的过滤器
+                ftTimeFilter(value,str='YYYY-MM-DD HH-mm-ss'){
+                    return dayjs(value).format(str)
+                }
+            },
+            computed:{
+                fmTime(){
+                    return dayjs(this.nowDate).format('YYYY-MM-DD HH-mm-ss')
+                }
+            },
+            methods:{
+                getFmTime(){
+                    return dayjs(this.nowDate).format('YYYY-MM-DD HH-mm-ss')
+                }
+            }
+        })
+        new Vue({
+            el:'#root2',
+            data:{
+                str:'shiyixi'
+            }
+        })
+    </script>
+</body>
+</html>

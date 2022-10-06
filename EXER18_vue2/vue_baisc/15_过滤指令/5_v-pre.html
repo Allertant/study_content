@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="test">
+        <!-- v-pre的作用是，在Vue解析模板时，发现如果有这个标签属性就不会解析这个标签，加快解析速度 -->
+        <!-- 一般如果某个标签不需要Vue介入也能正常显示时，可以使用这个属性，优化性能 -->
+        <h2 v-pre>今天天气不错</h2>
+        <h2>你说是吧，{{name}}？</h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#test',
+            data:{
+                name:'shiyixi'
+            }
+        })
+    </script>
+</body>
+</html>

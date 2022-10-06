@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- <h2>n的值为：{{n}}</h2>
+        <button @click="add">点我加一</button> -->
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+
+            // 这里可以用vm.$mount标志容器的位置，如果两者都没有，就会在beforeMount这个位置前卡住，页面仍为未解析状态
+            // el:'#root',
+            data:{
+                n:1 
+            }, 
+            //这里的template中的内容会原原本本的替换掉#root中的全部内容
+            //单节点，需要用大容器包裹
+            // 这里的大容器不能够是template,vue不允许使用
+            template:`  
+                <div>  
+                    <h2>n的值为：{{n}}</h2>
+                    <button @click="add">点我加一</button>
+                    <button @click="destroy">点击我销毁vm</button>
+                </div>
+            `,
+            methods:{
+                add(){
+                    this.n++
+                },
+                destroy(){
+                    this.$destroy()  // 关闭与其他实例的连接，关闭事件监听器和watch监听
+                }
+            },
+            // 还未开始数据监测和数据代理，这是还无法从vue实例上拿到数据
+            beforeCreate(){
+                console.log('beforeCreate')
+            },
+            // vue上做了数据挂载，可以通过vue实例获取数据
+            created(){
+                console.log('created')
+            },
+            // 还未挂载到页面上，页面上还是未解析的内容（此时通过dom的操作最终不会生效，会被覆盖）
+            beforeMount(){
+                console.log('beforeMounted')
+            },
+            // 页面解析完毕，这时的dom操作最终有效
+            mounted(){
+                console.log('mounted')
+            },
+            // 在依赖数据变化后，页面还未来得及更新时，即页面和数据不同步
+            beforeUpdate(){
+                console.log('beforeUpdate')
+            },
+            // 在数据发生更新后，页面也发生更新时
+            updated(){
+                console.log('updated')
+                // this.n++
+            },
+            // 在vm销毁之前
+            beforeDestroy(){
+                console.log('beforedestroy')
+                // 在销毁之前可以调用vm实例身上的方法和属性，但是所作的修改最终不会生效
+                // 一般这里用于关闭定时器、取消订阅消息，解绑自定义事件等 
+            },
+            // vm销毁之后
+            destroyed(){
+                console.log('destroyed')
+            }
+        })
+        vm.$mount('#root')
+    </script>
+</body>
+</html>

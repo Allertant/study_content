@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button @click="demo1">点击为学校增添属性</button>
+        <div id="school">
+            <h2>学校名称:{{school.name}}</h2>
+            <h2>学校地址:{{school.address}}</h2>
+            <h2 v-if="school.age">学校岁月:{{school.age}}</h2>
+        </div>
+        <hr> <br>
+        <button @click="demo2">点击为学生增添属性</button>
+        <div id="school">
+            <h2>学生姓名:{{student.name}}</h2>
+            <h2>学生年纪:{{student.age}}</h2>
+            <h2 v-if="student.grade">学生年级:{{student.grade}}</h2>
+        </div>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                school:{
+                    name:'wuhan-University',
+                    address:'wuhan'
+                },
+                student:{
+                    name:'shiyixi',
+                    age:20
+                }
+
+            },
+            methods:{
+                demo1(){
+                    // Vue实例.$set(target,key,value)
+                    // target可以写成this(vm).myObject.myPropty  或this._data.myObjcet.myPropty
+                    // 注意,不能够直接往vm.data身上添加响应式属性,只能够给data下面的某个对象添加属性,这也是我为什么设置了school包裹属性的原因
+                    // 除了Vue实例设置,也可以直接调用 Vue.set(target,key,value) 的方式进行自定义响应式布局
+                    this.$set(this.school,'age',108)
+                },
+                demo2(){
+                    Vue.set(this.student,'grade',3)
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>

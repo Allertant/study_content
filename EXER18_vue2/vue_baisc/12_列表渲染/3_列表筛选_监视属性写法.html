@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <input type="text" placeholder="请输入姓名字段" v-model="keyWord"><br>
+        <ul>
+            <li v-for="(p,index) in CurPersons" :key="index">
+                {{p.name}} --- {{p.age}} --- {{p.gender}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                keyWord:'',
+                Persons:[
+                    {name:'马冬梅',age:18,gender:'female'},
+                    {name:'周冬雨',age:19,gender:'female'},
+                    {name:'周杰伦',age:20,gender:'male'},
+                    {name:'韦罗伦',age:21,gender:'male'},
+                ],
+                CurPersons:[]
+            },
+            watch:{
+                keyWord:{
+                    // 保证第一次数据能够展示到页面上
+                    immediate:true,
+                    handler(val){
+                        this.CurPersons = this.Persons.filter((item)=>{
+                            return item.name.indexOf(val) !== -1
+                        })
+                    }
+                }
+            }
+
+        })
+        
+    </script>
+</body>
+</html>

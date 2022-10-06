@@ -16,6 +16,7 @@
         <button @click="changeA">点击我改变a的值</button>
     </div>
     <script>
+        Vue.config.productionTip = false;
         const vm = new Vue({
             el:'#root',
             data:{

@@ -23,6 +23,7 @@
             }
             render(){
                 const {isHappy} = this.state
+                // 注意这里不能够给回调函数传递参数，否则这个函数将不再拥有回调函数的功能(相当于将这个函数的返回值作为函数的回调)
                 return <h2 onClick={this.changeWeather}>今天我很{isHappy?'happy':'sad'}</h2>
             }
             // 自定义方法：必须要写成箭头函数

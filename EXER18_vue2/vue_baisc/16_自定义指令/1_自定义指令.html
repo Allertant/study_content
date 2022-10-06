@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!--（1）自定义属性放在directives中，函数式定义类似于通过一个函数，将传入的值放置到标签内部 -->
+    <!--（2）自定义属性的命名方式：如果一个指令由多个单词构成，应当写成 v-name1-name2的形式，如 v-big-number,这样在定义时，也
+            应当写成 "big-number"的加引号的形式
+        （3）在directives的指令定义函数/配置对象中，this的执行为window，因为这里已经无需使用vm上面的属性了（数据已经在标签中传递，
+            操作dom在函数中给出）
+        （4）全局配置Vue.directive('big',{}) 的形式，第二个参数也可以是函数
+ -->
+    <div id="test">
+        <h2>{{name}}</h2>
+        <h3>原来n的值：<span v-text="number"></span></h3>
+        <h3>放大10倍后的值：<span v-big="number"></span></h3>
+        <button @click="number++">点击后n加1</button>
+        <hr>
+        <input type="text" v-fbind="number">
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        // 全局配置自定义指令
+        // Vue.directive('big',function(element,binding){
+        //     console.log('big')
+        //     element.innerText = binding.value * 10
+        // })
+        new Vue({
+            el:'#test',
+            data:{
+                name:'shiyixi',
+                number:10
+            },
+            directives:{
+                // elemnet表示真实dom元素，binding表示绑定关系，在binding上有一个最重要的属性value,
+                big(element,binding){
+                    console.log('big')
+                    element.innerText = binding.value * 10
+                },
+                // v-fbind不能够写成函数形式，因为函数形式不包括inserted过程，无法绑定某些特定功能
+                fbind:{
+                    // 指令与元素成功绑定时
+                    bind(element,binding){
+                        element.value = binding.value * 10
+                    },
+                    // 元素插入文档时
+                    inserted(element){
+                        element.focus()
+                    },
+                    // 文档更新时（某些依赖数据改变，重新解析模板）
+                    update(element,binding){
+                        element.value = binding.value * 10
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        /* 属性选择器，所有包含该属性的标签被选中 */
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="test">
+        <!-- v-cloak，当vue介入管理时，这个属性会被删除，vue不参与管理时，这个属性不会有任何效果 -->
+        <h2 v-cloak>{{name}}</h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#test',
+            data:{
+                name:'shiyixi'
+            }
+        })
+    </script>
+</body>
+</html>

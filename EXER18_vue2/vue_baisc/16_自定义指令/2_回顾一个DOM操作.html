@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点我添加一个输入框</button>
+    <script>
+        const btn = document.getElementById('btn')
+        btn.onclick= function(){
+            const input1 = document.createElement('input')
+            input1.style.backgroundColor = 'orange',
+            input1.value = 99
+            document.body.appendChild(input1)
+            input1.focus()
+            input1.parentNode.style.backgroundColor = 'skyblue'
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 会用str指代的文本值替代掉标签的文本，同时也不会解析格式化标签内容 -->
+        <h2 v-text="str">nihao</h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                str:`<h2>hello,shiyixi</h2>`
+            }
+
+        })
+    </script>
+</body>
+</html>

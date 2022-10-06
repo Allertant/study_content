@@ -13,6 +13,7 @@
         <button @click="changeWeather">点击我改变天气</button>
     </div>
     <script>
+        Vue.config.productionTip = false;
         const vm = new Vue({
             el:'#root',
             data:{

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>  
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script type="text/babel">
+        class MyComponent extends React.Component{
+            getInputContent1 = ()=>{
+                const input1 = this.refs.input1
+                alert(input1.value)
+            }
+            getInputContent2 = ()=>{
+                const input2 = this.refs.input2
+                alert(input2.value)
+            }
+            render(){
+                return (
+                    <div>
+                        <input ref="input1" type="text" placeholder="点击按钮获取文本框内容" /> &nbsp;
+                        <button ref="btn1" onClick={this.getInputContent1}>点击我获取左侧输入框内容</button> &nbsp;
+                        <input ref="input2" onBlur={this.getInputContent2} type="text" placeholder="失去焦点获取文本框内容" />
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<MyComponent /> ,document.getElementById('test'))
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script type="text/babel">
+        class MyComponent extends React.Component{
+            // React最新的API，但是每个React.createRef()容器只能对应一个节点
+            input1Ref = React.createRef();
+            input2Ref = React.createRef();
+            getInput1Content = ()=>{
+                const input1 = this.input1Ref.current.value
+                alert(input1)
+            }
+            getInput2Content = ()=>{
+                const input2 = this.input2Ref.current.value
+                alert(input2)
+            }
+            render(){
+                
+                return (
+                    <div>
+                        <input ref={this.input1Ref} type="text" placeholder="点击按钮提示"/>
+                        <button onClick={this.getInput1Content}>点击按钮获取提示</button>
+                        <input onBlur={this.getInput2Content} ref={this.input2Ref} type="text" placeholder="失去焦点提示"/>
+                    </div>
+                    
+                )
+            } 
+        }
+        ReactDOM.render(<MyComponent/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

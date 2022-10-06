@@ -13,6 +13,7 @@
         <button @click="getSchool('hello',$event)">点我显示学校</button>
     </div>
     <script>
+        Vue.config.productionTip = false;
         new Vue({
             el:'#test',
             data:{

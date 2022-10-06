@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='../js/react.development.js'></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script type="text/babel"> 
+        class MyComponent extends React.Component{
+            state={
+                isHot:true
+            }
+            changeWeather = ()=>{
+                const {isHot} = this.state
+                this.setState({isHot:!isHot})
+            }
+            getInputContent = ()=>{
+                const {input1} = this
+                alert(input1.value)
+            }
+            saveInput = (c)=>{
+                this.input1 = c;
+                console.log('@',c.value)
+            }
+            render(){
+                const {isHot} = this.state
+                return (
+                    <div>
+                        <h2>今天天气很{isHot ? '炎热':'凉爽'}</h2>
+                        {/*内联写法，在数据更新时会执行两次*/}
+                        {/*<input ref={c => {this.input1 = c; console.log('@',c)}} type="text" placeholder="点击按钮获取文本信息"/> */}
+                        {/*非内联式写法，能够避免页面更新时ref回调函数两次调用*/}
+                        <input ref={this.saveInput} type="text" placeholder="点击按钮获取文本信息"/><br/><br/>
+                        <button onClick={this.changeWeather}>点击我切换天气</button>
+                        <button onClick={this.getInputContent}>点击我提示左边的信息</button>
+                    </div>
+                )
+            }
+        }
+        // 写成内联回调时，在更新时（如通过按钮将isHot进行了修改并重新渲染页面），会第一次调用，将ref清空置为null,第二次再次调用才将
+        // 真实的DOM结点赋值
+        ReactDOM.render(<MyComponent />,document.getElementById("test"))
+    </script>
+</body>
+</html>

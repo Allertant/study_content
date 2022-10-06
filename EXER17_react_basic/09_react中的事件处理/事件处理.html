@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script type="text/babel">
+
+        /*
+            注意：为了效率，不要滥用refs获取元素标签，能使用事件处理函数处理的事务就不要使用refs
+            事件处理
+                （1）函数名为onXxx 的形式，和原生js函数名不同，是因为在底层做了封装，为了更好的兼容性
+                （2）事件是通过委托（冒泡）的方式进行实现的，为了更高的效率
+                （3）可以用event.target的方式获取触发当前事件的doM元素
+        */
+        class MyComponent extends React.Component{
+
+            input1Ref = React.createRef();
+
+            getInput1Content = ()=>{
+                const input1 = this.input1Ref.current.value
+                alert(input1)
+            }
+
+            getInput2Content = (event)=>{
+                alert(event.target.value)
+            }
+            render(){
+                
+                return (
+                    <div>
+                        <input ref={this.input1Ref} type="text" placeholder="点击按钮提示"/>
+                        <button onClick={this.getInput1Content}>点击按钮获取提示</button>
+                        <input onBlur={this.getInput2Content}type="text" placeholder="失去焦点提示"/>
+                    </div>
+                    
+                )
+            } 
+        }
+        ReactDOM.render(<MyComponent/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

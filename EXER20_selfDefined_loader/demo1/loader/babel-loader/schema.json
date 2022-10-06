@@ -1,0 +1,9 @@
+{
+    "type":"object",
+    "Properties":{
+        "author":{
+            "type":"Array"
+        }
+    },
+    "addtionalProperties":true
+}

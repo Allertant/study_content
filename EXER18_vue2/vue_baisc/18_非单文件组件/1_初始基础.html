@@ -9,10 +9,7 @@
 </head>
 <body>
     <div id="root">
-        <hello-world></hello-world>
-        <school></school>
-        <hr>
-        <student></student>
+
     </div>
     <script>
         
@@ -64,12 +61,29 @@
                 </div>
             `
         })
-        new Vue({
+        /*
+            app是独一无二的刚定义的VueComponent的构造函数，this指向自身
+        */
+        const app = Vue.extend({
+            components:{
+                school,student
+            },
+            template:`
+                <div>
+                    <school></school>
+                    <student></student>
+                </div>
+            `    
+        })
+        /*
+            可以通过$children查看到Vue实例的隶属组件对象
+        */
+        const vm = new Vue({
             el:'#root',
             components:{
-                school,
-                student
-            }
+                app
+            },
+            template:`<app></app>`
         })
     </script>
 </body>

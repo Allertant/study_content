@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/17.0.1/react.development.js"></script>
+    <script src="../js/17.0.1/react-dom.development.js"></script>
+    <script src="../js/17.0.1/babel.min.js"></script>
+    <style>
+        .box{
+            height:150px;
+            width:100px;
+            overflow:auto;
+            background-color: #bfa;
+        }
+        .demo{
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="test">
+
+    </div>
+    <script type="text/babel">
+        class NewList extends React.Component{
+
+            state = {newsList:[]}
+            componentDidMount(){
+                setInterval(()=>{
+                    let {newsList} =  this.state
+                    let newNews = '新闻'+(newsList.length+1)
+                    this.setState({newsList:[newNews,...newsList]})
+                },1000)
+            }
+            render(){
+                return (
+                    <div className="box" ref='list'>
+                        {
+                            this.state.newsList.map((news,index)=>{
+                                return <div key={index} className='demo'>{news}</div>
+                            })
+                        }   
+                    </div>       
+                )
+            }
+            getSnapshotBeforeUpdate(){
+                console.log(this.refs.list.scrollHeight)
+                return this.refs.list.scrollHeight
+                
+            }
+
+            componentDidUpdate(preProps,preState,height){
+                this.refs.list.scrollTop += this.refs.list.scrollHeight-height
+            }
+        }
+        ReactDOM.render(<NewList/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

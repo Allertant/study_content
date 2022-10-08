@@ -1,13 +1,17 @@
 
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TestPlugin = require('./plugins/test-webpack-plugin')
+const BannerWebpackPlugin = require('./plugins/banner-webpack-plugin')
+const CleanWebpackPlugin = require('./Plugins/clean-webpack-plugin')
+const AnalyWebpackPlugin = require('./Plugins/analyze-webpack.plugin')
 
 module.exports = {
     entry:'./src/main.js',
     output:{
         path:path.resolve(__dirname,'./dist'),
         filename:'js/[name].js',
-        clean:true
+        // clean:true
     },
     module:{
         rules:[
@@ -38,7 +42,9 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                use:['style-loader','css-loader']
+                // use:['style-loader','css-loader']
+                use:['./loader/style-loader','css-loader']
+                
             },
             {
                 test:/\.(png|jpe?g|gif)/,
@@ -51,7 +57,13 @@ module.exports = {
     plugins:[
         new HtmlWebpackPlugin({
             template:path.resolve(__dirname,'./public/index.html')
-        })
+        }), 
+        // new TestPlugin(),
+        new BannerWebpackPlugin({
+            author:"shiyixi"
+        }),
+        new CleanWebpackPlugin(),
+        new AnalyWebpackPlugin()
     ],
-    mode:'development'
+    mode:'production'
 }

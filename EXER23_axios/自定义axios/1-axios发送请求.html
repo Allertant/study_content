@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+<!--    构造函数-->
+    function Axios(config){
+        this.defaults = config
+        this.interceptors = {
+            request:{},
+            response:[]
+        }
+    }
+//    原型上添加方法
+    Axios.prototype.request = function(config){
+        console.log('发送ajax请求，请求的类型为' + config.method)
+    }
+    Axios.prototype.get = function(){
+        this.request({method:'get'})
+    }
+    Axios.prototype.post = function(){
+        this.request({method:'post'})
+    }
+
+//    声明一个函数
+    function createInstance(config){
+    //    实例化一个对象
+        let context = new Axios(config) // context.get() context.post()  但是不能当作函数使用 context()
+    //    创建请求对象函数
+        let instance = Axios.prototype.request.bind(context)  // instance是一个函数，可以使用instance({}),但是instance不能当作对象使用，无法点出来
+    //    将Axios.prototype对象中的方法添加到instance函数对象中
+        Object.keys(Axios.prototype).forEach(key=>{
+            instance[key] = Axios.prototype[key].bind(context)  //可以在instance.request等函数体中可以使用context的this指向，即相关defaults等配置
+        })
+    //    为instance函数对象添加属性 default 与 interceptors
+        Object.keys(context).forEach(key=>{
+            instance[key] = context[key]
+        })
+        return instance
+    }
+
+    let axios = createInstance({method:'get'})
+    axios({method:'get'})
+    axios.post()
+</script>
+</body>
+</html>

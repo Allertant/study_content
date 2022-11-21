@@ -1,4 +1,4 @@
-const db = require('../db/index')
+ const db = require('../db/index')
 const bcrypt = require('bcryptjs')  //用于加密密码
 const jwt = require('jsonwebtoken') //用于生成 jwt 格式的cookie
 const config = require('../config') //导入全局的配置文件

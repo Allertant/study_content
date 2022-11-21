@@ -9,8 +9,8 @@
 </head>
 <body>
     <div id="root">
-        <!-- <h2>n的值为：{{n}}</h2>
-        <button @click="add">点我加一</button> -->
+        <h2>n的值为：{{n}}</h2>
+        <button @click="add">点我加一</button>
     </div>
     <script>
         Vue.config.productionTip = false;
@@ -33,7 +33,8 @@
             `,
             methods:{
                 add(){
-                    this.n++
+                    this.n++;
+                    console.log('@ add')
                 },
                 destroy(){
                     this.$destroy()  // 关闭与其他实例的连接，关闭事件监听器和watch监听

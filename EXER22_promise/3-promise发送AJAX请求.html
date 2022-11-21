@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link crossorigin='anonymous' href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <h2>promise模拟发送AJAX请求</h2>
+        <button class="btn btn-primary" id="btn">点击发送ajax请求</button>
+    </div>
+    <script>
+        const btn = document.getElementById('btn')
+        btn.addEventListener("click",()=>{
+            new Promise(function(resolve,reject){
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'http://localhost:80')
+                xhr.send()
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status <300){
+                            resolve(xhr.response)
+                        }else{
+                            reject(xhr.status)
+                        }
+                    }
+                }
+                
+            })
+            .then(value=>{
+                console.log(value)
+            },reason=>{
+                alert('reason:' + reason)
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,19 +1,21 @@
 <template>
-  <div>
-    <Student></Student>
-    <School></School>
-  </div>
+	<div>
+		<img src="./assets/logo.png" alt="logo">
+		<School></School>
+		<Student></Student>
+	</div>
 </template>
 
 <script>
-    import Student from './components/School'
-    import School from './components/Student'
-    export default {
-        components:{
-            Student,
-            School
-        },
-        // template:`<App></App>`,
-        name:'App'
-    }
+	//引入组件
+	import School from './components/School'
+	import Student from './components/Student'
+
+	export default {
+		name:'App',
+		components:{
+			School,
+			Student
+		}
+	}
 </script>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link crossorigin='anonymous' href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise 初体验</h2>
+        <button class="btn btn-primary" id="btn">点击抽奖</button>
+    </div>
+    <script>
+        // 获取m,n之间的随机值
+        function rand(m,n){
+            return Math.ceil(Math.random()*(n-m+1)) + m -1
+        }
+        const btn = document.getElementById("btn");
+        btn.addEventListener("click", function(){
+            const p = new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    let n = rand(1,100);
+                    console.log(n)
+                    if(n<=30){
+                        resolve(n)
+                    }else{
+                        reject()
+                    }
+                })
+            })
+            // 处理回调函数
+            p.then(value=>{
+                alert('恭喜你终将了，中奖号码为：'+ value)
+            },reason=>{
+                alert('很遗憾，您没有中奖')
+            })
+        });
+    </script>
+</body>
+</html>

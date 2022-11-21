@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function main(){
+            let p = new Promise((resolve,reject)=>{
+                resolve('okj')
+            })
+            // let p2 = new Promise((resolve,reject)=>{
+            //     reject('nonono')
+            // })
+            // 1. 右侧为非promise对象
+            // let a= await '123'
+            // 2. 右侧为promise对象，但为成功调用,返回值为其value值
+            let a = await p 
+            // 3. 右侧为promise对象，但为失败调用,则需要用try-catch捕获，再error保存错误对象
+            // try {
+            //     let a = await p2
+            // } catch (error) {
+            //     console.log(error)
+            // }
+            
+            console.log(a)
+        }
+        main()
+    </script>
+</body>
+</html>

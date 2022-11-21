@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 快速返回一个成功的promise对象
+        const p1 = Promise.resolve(123)
+        p1.then(value=>console.log(value))
+        // 接收了失败的promise对象，返回失败的对象
+        const p2 = Promise.resolve(new Promise((resolve,reject)=>{
+            reject('err')
+        }))
+        console.log(p2)
+        p2.catch(err => console.log(err))
+    </script>
+</body>
+</html>

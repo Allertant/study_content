@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let person = {
+            name:'张三',
+            age:18
+        }
+
+        // #regin
+        // 模拟vue2中实现响应式
+
+        // let p = {}
+        // Object.defineProperty(p,'name',{
+        //     get(){
+        //         return person.name
+        //     },
+        //     set(value){
+        //         console.log('有人修改了name属性，我发现了，我要去更新页面')
+        //         person.name = value
+        //     }
+        // })
+        // Object.defineProperty(p,'age',{
+        //     configurable: true,
+        //     get(){
+        //         return person.age
+        //     },
+        //     set(value){
+        //         console.log('有人修改了age属性，我发现了，我要去更新页面')
+        //         person.age = value
+        //     }
+        // })
+        // 模拟vue3中实现响应式
+        const p1 = new Proxy(person,{
+            // 读取时调用
+            get(target,propName){
+                console.log('有人读取了p1的'+propName+'属性')
+                return Reflect.get(target,propName)
+            },
+            // 修改和追加都会调用
+            set(target,propName,value){
+                console.log(`有人修改了${propName}的值`)
+                Reflect.set(target,propName,value)
+            },
+            // 删除时调用
+            deleteProp(target,propName){
+                console.log(`有人删除了${propName}的属性`)
+                return Reflect.deleteProp(target,propName  )
+            },
+
+        })
+        // #endregin
+
+        // let obj = {
+        //     a:1,
+        //     b:2
+        // }
+        // const s1 = Reflect.defineProperty(obj,'c',{
+        //     get(){
+        //         return 12
+        //     },
+        //     set(value){
+        //         a = value
+        //     }
+        // })
+        // const s2 = Reflect.defineProperty(obj,'c',{
+        //     get(){
+        //         return 13
+        //     },
+        //     set(value){
+        //         a = value
+        //     }
+        // })
+
+        // console.log(s1,s2)
+
+    </script>
+</body>
+</html>

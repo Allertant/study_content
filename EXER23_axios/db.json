@@ -1,0 +1,69 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "nice a day today",
+      "author": "shiyixi",
+      "id": 3
+    },
+    {
+      "title": "nice a day today",
+      "author": "shiyixi",
+      "id": 4
+    },
+    {
+      "title": "nice a day today",
+      "author": "shiyixi",
+      "id": 5
+    },
+    {
+      "title": "nice a day today",
+      "author": "shiyixi",
+      "id": 6
+    },
+    {
+      "title": "nice a day today",
+      "author": "shiyixi",
+      "id": 7
+    },
+    {
+      "title": "nice a day today",
+      "author": "shiyixi",
+      "id": 8
+    },
+    {
+      "title": "nice a day today",
+      "author": "shiyixi",
+      "id": 9
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "body": "shiyixi",
+      "postId": 2,
+      "id": 2
+    },
+    {
+      "body": "shiyixi",
+      "postId": 2,
+      "id": 3
+    },
+    {
+      "body": "shiyixi",
+      "postId": 2,
+      "id": 4
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

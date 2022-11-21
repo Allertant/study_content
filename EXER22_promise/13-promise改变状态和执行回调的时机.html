@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const p = new Promise((resolve,reject)=>{
+            // 先指定回调，再改变状态
+            setTimeout(()=>{
+                // 改变状态（在resolve执行后，再执行回调函数）
+                resolve('ok')
+            },1000)
+        })
+        p.then(value=>{
+            console.log(value)
+        })
+    </script>
+</body>
+</html>

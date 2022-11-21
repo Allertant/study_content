@@ -1,0 +1,13 @@
+// import './01_基础类型'
+// import './03_函数类型'
+// import './04_类类型'
+// import './05_类'
+// import './06_继承'
+// import './07_多态'
+// import './08_修饰符'
+// import './09_readonly修饰符'
+// import './10_存储器'
+// import './11_静态成员'
+// import './12_抽象类'
+import './13_函数'
+console.log('main----'+'hello,shiyixi')

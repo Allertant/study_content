@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TestPlugin = require('./plugins/test-webpack-plugin')
 const BannerWebpackPlugin = require('./plugins/banner-webpack-plugin')
 const CleanWebpackPlugin = require('./Plugins/clean-webpack-plugin')
-const AnalyWebpackPlugin = require('./Plugins/analyze-webpack.plugin')
+const AnalyWebpackPlugin = require('./Plugins/analyze-webpack-plugin')
+const InlineChunkWebpackPlugin = require('./Plugins/inline-chunk-webpack-plugin')
 
 module.exports = {
     entry:'./src/main.js',
@@ -63,7 +64,18 @@ module.exports = {
             author:"shiyixi"
         }),
         new CleanWebpackPlugin(),
-        new AnalyWebpackPlugin()
+        new AnalyWebpackPlugin(),
+        new InlineChunkWebpackPlugin([
+            /runtime(.*)\.js$/g
+        ])
     ],
+    optimization:{
+        splitChunks:{
+            chunks:'all'
+        },
+        runtimeChunk:{
+            name:entrypoint => `runtime~${entrypoint.name}.js`
+        }
+    },
     mode:'production'
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve,reject)=>{
+            resolve('ok')
+        })
+
+
+        // then方法调用结果为promise对象
+        const result = p.then(value=>{
+            // 1. 抛出错误，则将错误内容作为reject的内容
+            // throw 'err'
+            // 2. 非promise类型，返回resolve类型，内容为返回内容
+            // return 122
+            // 3. reject 类型——根据其返回内容而定
+            return new Promise((resolve,reject)=>{
+                // resolve('oh,year')
+                reject('err')
+            })
+        },reason=>{
+
+        })
+        console.log(result)
+    </script>
+</body>
+</html>

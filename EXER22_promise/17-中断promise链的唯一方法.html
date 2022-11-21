@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const p = new Promise((resolve,reject)=>{
+            resolve('hello')
+        })
+
+        p.then(value=>{
+            console.log(111)
+            // 必须返回一个既不是reject类型的Promise对象也不能返回一个resolve类型的对象，即pending类型
+            return new Promise(()=>{})
+        }).then(value=>{
+            console.log(222)
+        }).then(value=>{
+            console.log(333)
+        }).catch(reason=>{
+            console.warn(reason)
+        })
+    </script>
+</body>
+</html>

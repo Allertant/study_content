@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">基本使用</h2>
+        <button class="btn btn-primary">发送 GET 请求</button>
+        <button class="btn btn-warning">取消请求</button>
+    </div>   
+    <script>
+<!--        自定义axios的请求取消功能-->
+        //构造函数
+        function Axios(config){
+            this.config = config
+        }
+
+        //原型request方法
+        Axios.prototype.request = function(config){
+            return dispatchRequest(config)
+        }
+
+        //dispatchRequest方法
+        function dispatchRequest(config){
+            return xhrAdapter(config)
+
+        }
+
+        //xhrAdapter方法
+        function xhrAdapter(config){
+            return new Promise((resolve,reject)=>{
+                const xhr = new XMLHttpRequest()
+                xhr.open(config.method,config.url)
+                xhr.send()
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            resolve({
+                                status:'200',
+                                statusText:'ok'
+                            })
+                        }else{
+                            reject(new Error('请求失败 失败的状态码为'+ xhr.status) )
+                        }
+                    }
+                }
+            //    关于取消请求的处理
+                if(config.cancelToken){
+                //    对cancleToken 对象上的promise对象指定成功的回调,等待promise成功回调的执行
+                    config.cancelToken.promise.then(value=>{
+                        xhr.abort()
+                        reject(new Error('请求已经被取消'))
+                    })
+                }
+            })
+        }
+
+        //创建axios函数
+        const context = new Axios({})
+        const axios = Axios.prototype.request.bind(context)
+
+        //CancelToken构造函数
+        function CancelToken(executor){
+        //    声明一个变量
+            var resolvePromise;
+        //    为实例对象添加promise属性
+            this.promise = new Promise((resolve)=>{
+                //将resolve赋值给resolvePromise
+                resolvePromise = resolve
+
+            })
+        //    调用executor函数
+            executor(function(){
+            //    执行resolvePromise函数
+                resolvePromise()
+            })
+        }
+
+        const btns = document.querySelectorAll('button');
+        // 声明一个全局变量
+        let cancel = null;
+
+        btns[0].onclick = function(){
+            // 检查上一次请求是否已经完成
+            if(cancel !== null){
+                // 取消上一次的请求
+                cancel()
+            }
+            axios({
+                method:'get',
+                url:'http://localhost:3000/posts',
+                // 添加配置对象的属性：canceltoken
+                cancelToken:new CancelToken(function(c){
+                    cancel = c;
+                })
+            }).then(res=>{
+                console.log(res)
+                // 将cancel的值初始化
+                cancel = null
+            },rea=>{
+                console.log(rea)
+            })
+        }
+
+        btns[1].onclick=function(){
+            cancel();
+        }
+    </script>
+</body>
+</html>

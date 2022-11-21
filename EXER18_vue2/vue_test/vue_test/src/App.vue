@@ -1,37 +1,22 @@
 <template>
   <div>
-    <h1 v-text="msg" ref="s_h1"></h1>
-    <button @click="findDom">点击我获取上一个标签的内容</button>
-    <Student ref="stu1"></Student>
-    <button @click="findDom1">点击我获取上一个标签的内容</button>
-    <!-- <Student></Student> -->
-    <!-- <Student></Student> --> 
+    <h2 v-text="a"></h2>
+    
   </div>
-  
 </template>
 
 <script>
-import Student from './components/Student.vue'
-export default {
-  components:{
-    Student
-  },
-  data(){
-    return {
-      msg:'hello shiyixi'
-    }
-  },
-  methods:{
-    findDom(){
-      alert(this.$refs.s_h1.innerHTML)
+
+	export default {
+		name:'App',
+    data(){
+      return {
+        a:1
+      }
     },
-    findDom1(){
-      alert(this.$refs.stu1.age)
-    }
-  }
+    components:{
+
+    
+	}
 }
 </script>
-
-<style>
-
-</style>

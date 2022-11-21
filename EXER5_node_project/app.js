@@ -12,7 +12,7 @@ app.use('uploads',express.static('./uploads'))
 // 解决跨域问题
 app.use(cors())
 // 配置解析表单数据的中间件
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: false}))
 // 在挂载路由之前，封装res.cc函数
 app.use((req,res,next)=>{
     // status默认值为1，表示失败的情况

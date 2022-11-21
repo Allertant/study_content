@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function Axios(config){
+            this.config = config
+            this.interceptors = {
+                request:new InterceptorManager(),
+                response:new InterceptorManager()
+            }
+        }
+
+        //发送请求
+        Axios.prototype.request = function(config){
+        // 1. 创建一个promise对象
+            let promise = Promise.resolve(config)
+            //创建一个数组
+            const chains = [dispatchRequest,undefined]
+            //处理拦截器
+        //    请求拦截器，将请求拦截器的回调，压入到chains的前面 request.handlers
+            this.interceptors.request.handlers.forEach(item=>{
+                chains.unshift(item.fulfilled,item.rejected)
+            })
+        //    处理响应拦截器
+            this.interceptors.response.handlers.forEach(item=>{
+                chains.push(item.fulfilled,item.rejected)
+            })
+        //    遍历
+            while(chains.length){
+                promise = promise.then(chains.shift(),chains.shift())
+            }
+            return promise
+        }
+
+
+        function dispatchRequest(config){
+            return new Promise((resolve,reject)=>{
+                resolve({
+                    status:200,
+                    statusText:'ok'
+                })
+            })
+        }
+
+
+        //创建实例
+        let context = new Axios({})
+        //创建axios函数
+        let axios = Axios.prototype.request.bind(context)
+            //将context属性config interceptors添加至axios函数对象身上
+        Object.keys(context).forEach(key=>{
+            axios[key]=context[key]
+        })
+
+        //拦截器管理器构造函数
+        function InterceptorManager(){
+            this.handlers = []
+        }
+
+        InterceptorManager.prototype.use = function(fulfilled,rejected){
+            this.handlers.push({
+                fulfilled,
+                rejected
+            })
+        }
+
+
+
+        // 设置请求拦截器 -1
+        axios.interceptors.request.use(function(config){
+            console.log('请求拦截器-1，成功')
+            return config
+            // throw 'sadf'
+        },function(error){
+            console.log('请求拦截器-1，失败')
+            return Promise.reject(error)
+        })
+
+        // 设置请求拦截器 -2
+        axios.interceptors.request.use(function(config){
+            console.log('请求拦截器-2，成功')
+            return config
+            // throw 'sadf'
+        },function(error){
+            console.log('请求拦截器-2，失败')
+            return Promise.reject(error)
+        })
+
+        // 设置响应拦截器-1
+        axios.interceptors.response.use(function(response){
+            console.log('响应拦截器-1，成功')
+            // 只将数据交给then回调，而其他信息类似于状态码等在这里可以进行处理
+            return response
+        },function(error){
+            console.log('响应拦截器-1，失败')
+            return Promise.reject(error)
+        })
+
+        // 设置响应拦截器-2
+        axios.interceptors.response.use(function(response){
+            console.log('响应拦截器-2，成功')
+            return response
+        },function(error){
+            console.log('响应拦截器-2，失败')
+            return Promise.reject(error)
+        })
+
+        axios({
+            method:'get',
+            url:"http://localhost:3000/posts"
+        }).then(response=>{
+            console.log(response)
+        },reason=>{
+            console.log("请求失败了诶")
+        })
+    </script>
+</body>
+</html>

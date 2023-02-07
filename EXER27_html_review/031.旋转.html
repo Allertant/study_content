@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            perspective:800px;
+            border:1px solid red;
+            background-color: silver;
+        }
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+            margin:200px auto;
+            transition:all 5s;
+            backface-visibility:visiable;
+        }
+        body:hover .box1 {
+            transform:translateZ(300px) rotateY(.5turn);
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <img src="./image/jd001.png" alt="">
+    </div>
+</body>
+</html>

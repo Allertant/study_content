@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width:100px;
+            height: 100px;
+            background-color: #bfa;
+            box-shadow:0px 0px 10px rgba(0,0,0,.3) ;
+            border-radius: 12px;
+            border-top-left-radius:30px;
+        }
+        .box1:hover{
+            outline: 10px red solid;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        outline
+            - 用来设置元素的轮廓线（同border）
+            - 不影响布局
+        box-shadow 不影响布局
+            - 第一个值：水平偏移量，设置阴影的水平位置 正值向右移动 负值向左移动
+            - 第二个值：垂直偏移量，设置阴影的垂直位置 正值向下移动 负值向上移动
+            - 第三个值：阴影的模糊半径
+            - 第四个值：阴影的颜色
+        border-radius 
+            - 设置圆角
+            - 单独设置border-top-left-radius、border-top-right-radius、border-bottom-left-radius、border-bottom-right-radius
+                - 一个值：（圆）表示半径
+                - 两个值：（椭圆）第一个值表示x方向的值，第二个值表示y方向上的值
+            - 统一设置
+                - 一个值：四个方向
+                - 两个值：左上/右下、右上/左下
+                - 三个值：左上 右上/左下 右下
+                - 四个值：左上、右上、右下、左下四个方向的圆角
+                对于单个角设置椭圆 10px/20px 10px/20px 10px/20px 10px/20px 
+                - 设置百分比 50% 变为一个圆形
+     -->
+    <div class="box1">
+
+    </div>
+    hello
+</body>
+</html>

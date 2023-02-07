@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .clock{
+            width:500px;
+            height:500px;
+            /* background-color: #bfa; */
+            margin:0 auto;
+            margin-top:50px;
+            border-radius: 50%;
+            /* border:10px solid black; */
+            position:relative;
+            background-image: url('./image/bg3.jpg');
+            background-size: cover;
+        }
+        .clock>div{
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            margin:auto;
+        }
+        .pointer{
+            width:10px;
+            height:10px;
+            background-color: black;
+            border-radius: 50%;
+        }
+        .hour-wrapper{
+            height:70%;
+            width:70%;
+            /* background-color: orange; */
+            border-radius: 50%;
+            animation:run 3600s infinite linear;
+        }
+        .hour-wrapper>.hour{
+            width:6px;
+            height:50%;
+            margin:0 auto;
+            background-color: black;
+        }
+
+
+        .minute-wrapper{
+            height:80%;
+            width:80%;
+            /* background-color: orange; */
+            border-radius: 50%;
+            animation:run 60s infinite linear;
+        }
+        .minute-wrapper>.minute{
+            width:4px;
+            height:50%;
+            margin:0 auto;
+            background-color: black;
+        }
+
+
+        .second-wrapper{
+            height:90%;
+            width:90%;
+            /* background-color: orange; */
+            border-radius: 50%;
+            animation:run 1s steps(60) infinite;
+        }
+        .second-wrapper>.second{
+            width:2px;
+            height:50%;
+            margin:0 auto;
+            background-color: red;
+        }
+
+
+        @keyframes run {
+            from {
+                transform: rotateZ(0)
+            }
+            to{
+                transform: rotateZ(360deg)
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="pointer"></div>
+        <!-- 秒针 -->
+        <div class="second-wrapper">
+            <div class="second"></div>
+        </div>
+        <!-- 分针 -->
+        <div class="minute-wrapper">
+            <div class="minute"></div>
+        </div>
+        <!-- 时针 -->
+        <div class="hour-wrapper">
+            <div class="hour"></div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

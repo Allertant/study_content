@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://www.163.com/favicon.ico">
+    <link rel="icon" href="https://www.baidu.com/favicon.ico">
+    <title>Document</title>
+    <script>
+        window.onload= function(){
+            var inp = document.getElementById("inp")
+            inp.onkeydown=function(event){ // 会连续触发
+                // console.log(event.keyCode)
+                // console.log(event.ctrlKey,event.altKey,event.shiftKey) // 是否被按下
+                if(event.keyCode == 13) document.write(this.value)
+                if(event.keyCode<48 || event.keyCode>57) return false
+            }
+            inp.onkeyup=function(event){ // 不会连续触发
+                console.log(event.keyCode)
+                // if(event.keyCode===13) console.log(this.value)
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="inp">
+</body>
+</html>

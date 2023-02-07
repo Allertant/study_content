@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            height:1000px;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position:absolute;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var box1 = document.getElementById("box1")
+            box1.onmousedown = function(event){
+                var boxOffsetX = event.offsetX;
+                var boxOffsetY = event.offsetY;
+                document.onmousemove = function(event){
+                    var x = event.pageX
+                    var y = event.pageY
+                    box1.style.left = x-boxOffsetX+'px'
+                    box1.style.top = y-boxOffsetY+'px'
+                }
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+                // 取消默认行为
+                return false
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    sdf
+    <div id="box1"></div>
+</body>
+</html>

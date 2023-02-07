@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width:200px;
+            height:200px;
+            background-color: #bfa;
+        }
+        .sp1{
+            background-color: yellow;
+            border:1px solid black;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var sp1 = document.getElementsByClassName("sp1")[0]
+            var box1 = document.getElementsByClassName("box1")[0]
+            // 事件的冒泡：点击子元素会触发祖先元素的方法
+            sp1.onclick=function(event){ 
+                // 取消冒泡
+                event.cancelBubble=true
+                console.log('sp1')
+            }
+            box1.onclick=function(){
+                console.log('box1')
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box1">
+        我是box1
+        <span class="sp1">我是span</span>
+    </div>
+</body>
+</html>

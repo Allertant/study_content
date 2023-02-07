@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .b1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .b2{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var btn01 = document.getElementById('btn01');
+            var btn02 = document.getElementById('btn02');
+            var box = document.getElementById('box')
+
+            btn01.onclick=function(){
+                /*
+                    这样修改样式的方法
+                        1. 每修改一个属性，就会重新渲染页面
+                        2. 需要修改多个样式时，也不太方便
+                */
+                //    box.style.width = '200px;'
+
+                // 通过修改class属性间接地修改样式
+                // box.className = 'b2'
+                addClass(box,'b2')
+                // toggleClass(box,'b2')
+            }
+            btn02.onclick=function(){
+                removeClass(box,'b2')
+            }
+            setInterval(()=>toggleClass(box,'b2'),100)
+            function addClass(domObj,addClassName){
+                var className = domObj.className
+                var reg = new RegExp('\\b'+addClassName+'\\b')
+                if(reg.test(className)) return console.log('该属性已经存在了')
+                domObj.className += ' '+addClassName
+            }
+            function removeClass(domObj,removeClassName){
+                var reg = new RegExp('\\b '+removeClassName+'\\b')
+                domObj.className = domObj.className.replace(reg,'')
+            }
+            // 切换样式
+            function toggleClass(domObj,toggleClassName){
+                var className = domObj.className
+                var reg = new RegExp('\\b'+toggleClassName+'\\b')
+                var res = reg.test(className)
+                if(res){
+                    domObj.className = domObj.className.replace(reg,'')
+                } else{
+                    domObj.className += ' '+toggleClassName
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn01">点击按钮之后设置样式</button> <br><br>
+    <button id="btn02">点击按钮之后删除样式</button>
+    <div id="box" class="b1"></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // json:javascript object notation js对象表示法
+        // JSON.toStringify JSON.parse
+        function doFile(){
+            var file = document.getElementById('file').files[0]
+            var json = JSON.stringify({ name: 'shiyixi', age: 17 })
+            var fileReader = new FileReader();
+            fileReader.readAsText(file, 'UTF-8');
+            fileReader.onload = function (e) {
+                var resText = e.target.result
+                var resObj = JSON.parse(resText)
+                console.log(resObj.name, resObj.age)
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="file" id="file" onchange="doFile()" />
+    
+</body>
+
+</html>

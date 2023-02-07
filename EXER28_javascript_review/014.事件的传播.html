@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width:300px;
+            height:300px;
+            background-color: yellowgreen;
+        }
+        #box2{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+        #box3{
+            width: 150px;
+            height: 150px;
+            background-color: skyblue;
+        }
+    </style>
+    <script>
+        /**
+         * 理解1：事件的触发在冒泡阶段执行
+         * 理解2：事件的触发在冒泡后执行，从外向内执行（捕获）
+         * 最终方案
+         *  - 事件的捕获阶段：从最外层向目标元素进行捕获，默认不会触发事件
+         *  - 事件的目标阶段：捕获到目标，开始在目标元素上触发事件
+         *  - 事件的冒泡阶段：事件从目标元素开始向祖先元素传递，依次触发事件
+         * 如果希望在捕获阶段就执行事件，可以设置addEventListener的第三个参数设置为true
+         */ 
+        window.onload = function(){
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+            var box3 = document.getElementById("box3");
+
+            box1.addEventListener("click",function(){
+                console.log(this.id)
+            },true)
+            box2.addEventListener("click",function(){
+                console.log(this.id)
+            })
+            box3.addEventListener("click",function(){
+                console.log(this.id)
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="box1">box1
+        <div id="box2">box2
+            <div id="box3">box3</div>
+        </div>
+    </div>
+</body>
+</html>

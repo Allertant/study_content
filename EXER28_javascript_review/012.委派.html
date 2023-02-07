@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            list-style-type: none;
+        }
+        a{
+            text-decoration:none;
+            display: inline-block;
+            color:black;
+            /* border:1px solid black; */
+            margin-bottom:4px;
+            background-color: lightgreen;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var index = 3;
+            var allA = document.getElementById("ul")
+            allA.onclick = function (event) {
+                // console.dir(getComputedStyle(event.target,null).backgroundClip);
+                console.dir(event.target)
+                if(event.target.nodeName=='A') alert(event.target.innerHTML)
+            }
+            allA.onbeforecopy = function(e){
+                console.dir(e.target)
+                console.log('剪裁之前')
+            }
+
+            var btn01 = document.getElementById("btn01")
+            var ul = document.getElementById("ul");
+            btn01.onclick = function () {
+                var li = document.createElement("li")
+                li.innerHTML = "<a href='javascript:;'>超链接"+(++index)+"</a>"
+                ul.appendChild(li)
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn01">添加超链接</button>
+    <ul id="ul">
+        <li><a href="javascript:;">超链接1</a></li>
+        <li><a href="javascript:;">超链接2</a></li>
+        <li><a href="javascript:;">超链接3</a></li>
+    </ul>
+</body>
+
+</html>

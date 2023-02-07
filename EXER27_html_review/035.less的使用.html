@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            /* 定义变量 */
+            --color:#bfa;
+            --length:100px;
+        }
+        div{
+            width: var(--length);
+            height: var(--length);
+        }
+        .box1{
+            /* 使用变量，var关键字声明 */
+            background-color: var(--color);
+        }
+        .box2{
+            color:var(--color)
+        }
+        .box3{
+            border:10px solid var(--color)
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2">cheers up</div>
+    <div class="box3"></div>
+</body>
+</html>

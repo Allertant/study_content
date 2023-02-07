@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            var btn = document.getElementsByTagName("button")[0]
+            // domobj.addEventListener(eventName,fun) 给对象绑定事件，与 on-事件 的区别是能够绑定多个函数 
+            btn.addEventListener("click",function(){
+                console.log(this.innerHTML);
+                console.log("第一次绑定")
+            })
+            btn.addEventListener("click",function(){
+                console.log("第二次绑定")
+            })
+            // window.location.href="010.事件对象.html"
+            // window.open('003_对象字面量.html',width="10px",height="200px")
+        }
+    </script>
+</head>
+<body>
+    <button>点击或获取信息</button>
+</body>
+</html>

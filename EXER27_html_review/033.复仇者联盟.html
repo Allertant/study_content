@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            perspective:800px;
+        }
+        .cube{
+            width:300px;
+            height: 300px;
+            /* background-color: #bfa; */
+            margin:100px auto;
+            /* transform: rotateX(45deg) rotateZ(45deg); */
+            animation:rotate 5s infinite linear;
+            transform-style:preserve-3d;
+        }
+        .cube>div{
+            width:300px;
+            height:300px;
+            opacity:.9;
+            position:absolute;
+        }
+        .box1{
+            transform:rotateY(90deg) translateZ(150px);
+        }
+        .box2{
+            transform:rotateY(-90deg) translateZ(150px);
+        }
+        .box3{
+            transform:rotateX(90deg) translateZ(150px);
+        }
+        .box4{
+            transform:rotateX(-90deg) translateZ(150px);
+        }
+        .box5{
+            transform:rotateY(180deg) translateZ(150px)
+        }   
+        .box6{
+            transform:translateZ(150px)
+            
+        }
+        img{
+            vertical-align: top;
+            width:100%;
+        }
+        @keyframes rotate {
+            from{
+                transform:rotateX(0) rotateZ(0)
+            }
+            to{
+                transform:rotateX(360deg) rotateZ(360deg)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cube">
+        <div class="box1">
+            <img src="./image/1.jpg" alt="">
+        </div>
+        <div class="box2">
+            <img src="./image/2.jpg" alt="">
+        </div>
+        <div class="box3">
+            <img src="./image/3.jpg" alt="">
+        </div>
+        <div class="box4">
+            <img src="./image/4.jpg" alt="">
+        </div>
+        <div class="box5">
+            <img src="./image/5.jpg" alt="">
+        </div>
+        <div class="box6">
+            <img src="./image/6.jpg" alt="">
+        </div>
+    </div>
+</body>
+</html>

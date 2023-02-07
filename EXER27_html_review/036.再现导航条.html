@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        /* 
+            flex
+                容器
+                    flex-direction:
+                        主轴方向
+                        column
+                        row
+                    flex-wrap:
+                        是否换行
+                        nowrap
+                        wrap-reverse
+                    flex-flow:
+                        flex-direction和flex-wrap两个属性的简写属性
+                    justify-content:
+                        分配主轴上的空白空间
+                        flex-start
+                        flex-end
+                        center
+                        space-around 空白分布到元素的两侧
+                        space-evenly 空白分布到元素的单侧
+                        space-between 空白分布到元素的中间
+                    align-items：
+                        元素在辅轴上的对齐
+                        stretch 将元素的长度设置为相同值
+                        flex-start 辅轴起边对其
+                        flex-end 辅轴结束对齐
+                        center
+                        base-line 基线对齐
+                    align-content
+                        分配辅轴上的空白空间
+                        center
+                        flex-start
+                        flex-end
+                        space-around
+                        space-between
+                        space-evenly
+                元素
+                    align-self 
+                        用来覆盖当前弹性元素上的align-items属性设置
+                    flex-grow
+                        增长系数
+                    flex-shrink
+                        缩减系数
+                        但是，缩减的大小是根据缩减系数和元素大小来计算
+                    flex-basis
+                        元素的基础长度
+                        
+        */
+        .nav{
+            display:flex;
+            width: 1210px;
+            height: 48px;
+            line-height:48px;
+            margin:50px auto;
+            background-color: #E8E7E3;
+            text-align:center;
+        }
+        .nav li{
+            flex-grow:1;
+        }
+        .nav a{
+            display:block;
+            text-decoration: none;
+            font-size:16px;
+            color:#808080;
+        }
+        .nav a:hover{
+            background-color: #636363;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li><a href="#">HTML</a></li>
+        <li><a href="#">Browser Side</a></li>
+        <li><a href="#">Server Side</a></li>
+        <li><a href="#">Programming</a></li>
+        <li><a href="#">XML</a></li>
+        <li><a href="#">Web Building</a></li>
+        <li><a href="#">Reference</a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content-box{
+            background-color: #bfa;
+            margin:200px auto;
+            height:500px;
+            width:500px;
+            line-height: 500px;
+            text-align:center;
+            border-radius:50%;
+            font-size:200px;
+        }
+        .scary{
+            background-color: balck;
+            margin:200px auto;
+            height:800px;
+            width:300px;
+            line-height: 800px;
+            text-align:center;
+            border-radius: none;
+            font-size:200px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var content = 2
+            var contentBox = document.getElementById("content-box")
+            var interval = setInterval(function(){
+                contentBox.innerHTML = content--
+            },1000)
+            setTimeout(function(){
+                contentBox.innerHTML = "我来抓人了"
+                clearInterval(interval)
+            },3000)
+        }
+    </script>
+</head>
+<body>
+    <div id="content-box">
+        3
+    </div>
+</body>
+</html>

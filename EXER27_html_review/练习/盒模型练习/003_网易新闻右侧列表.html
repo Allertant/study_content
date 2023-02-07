@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="https://cdn.bootcdn.net/ajax/libs/reseter.css/2.0.0/minireseter.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../../css/reset.css">
+    <style>
+        body{
+            /* background-color: #bfa; */
+        }
+        a{
+            text-decoration: none;
+        }
+        .news-wrapper{
+            width:300px;
+            height:357px;
+            margin:50px auto;
+            background-color: #fff;
+            border-top:1px #ddd solid;
+        }
+        .news-title{
+            display: inline-block;
+            height:30px;
+            border-top:1px red solid;
+            margin-top:-1px;
+            padding-top:10px;
+        }
+        .news-title a{
+            text-decoration:none;
+            color:#404068;
+            font-weight:bold;
+        }
+        .news-image{
+            height:150px;
+            overflow: hidden;
+        }
+        img{
+            transition:2s;
+        }
+        img:hover{
+            transform:scale(1.2)
+        }
+        .news-image .image-title{
+            color:white;
+            margin-top:-30px;
+            font-weight:bold;
+            padding-left:30px;
+        }
+        .news-list{
+            margin-top:20px;
+            /* padding-left:14px; */
+            /* list-style: square; */
+        }
+        .news-list li{
+            margin-bottom:17px;
+        }
+        .news-list li a{
+            font-size:12px;
+            color:#666;
+        }
+        .news-list li a::before{
+            content:"■ ";
+            color:rgb(218,218,218);
+            font-size: 12px;
+            margin-right:4px;
+        }
+        .news-list li a:hover{
+            color:red;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="news-wrapper">
+        <h2 class="news-title">
+            <a href="javascript:;">体育</a>
+        </h2>
+        <div class="news-image">
+            <a href="javascript:;">
+                <img src="../../image/wy004.webp" alt="">
+                <h3 class="image-title">歼12在中国防空识别区驱离外机</h3>
+            </a>
+        </div>
+        <ul class="news-list">
+            <li><a href="javascript:;">美军两艘军舰如何快速转运船员</a></li>
+            <li><a href="javascript:;">海军航空兵歼-7战机带弹执行战备巡逻</a></li>
+            <li><a href="javascript:;">英媒：尼泊尔失事客机不排除与鸟击有关</a></li>
+            <li><a href="javascript:;">背景大兴机场国际及地区航班正式复航</a></li>
+        </ul>
+    </div>
+</body>
+</html>

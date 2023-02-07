@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img1 {
+            line-height: top;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var img1 = document.getElementById('img1')
+            var btn01 = document.getElementById('btn01')
+            var btn02 = document.getElementById('btn02')
+
+            var imgArr = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg']
+            var i = 0;
+            var intervalId;
+            btn01.onclick = function () {
+                if(intervalId) return 
+                console.log('执行了set方法')
+                intervalId = setInterval(function () {
+                    img1.src = './image/' + imgArr[i++]
+                    i = i % imgArr.length
+                }, 1000)
+            }
+            btn02.onclick=function(){
+                // clearInterval接收到无效值并不会报错
+                if(intervalId){
+                    console.log('执行了clear方法')
+                    clearInterval(intervalId)
+                    intervalId=undefined
+                }
+                
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <img src="./image/1.jpg" id="img1" alt="">
+    <br><br>
+    <button id="btn01">开始</button>
+    <button id="btn02">暂停</button>
+</body>
+
+</html>

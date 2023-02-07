@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul>li:first-child{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        以下选择器要考虑所有兄弟元素及位置
+        选择器:first-child
+        选择器:last-child
+        :nth-child(x)：从1开始，选中第x个元素
+        :nth-child(n)：选中所有元素（n从0开始）
+        :nth-child(2n)：选中第偶数个元素  :nth-child(even)
+        :nth-child(2n+1)：选中第奇数个元素 :nth-child(odd)
+        以下选择器只需要考虑本type的元素
+        :first-of-type
+        :last-of-type
+        :nth-of-type(x)
+        ...
+     -->
+     <ul> 
+        <p>我是p元素</p>
+        <li>我是li元素</li>
+        <li>我是li元素</li>
+        <li>我是li元素</li>
+        <li>我是li元素</li>
+     </ul>
+</body>
+</html>

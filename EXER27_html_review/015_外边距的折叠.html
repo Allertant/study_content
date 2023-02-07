@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1,.box2,.box3{
+            font-size:30px;
+            width:100px;
+            height:100px;
+        }
+        .box1{
+            background-color: #bfa;
+            margin-bottom:100px;
+        }
+        .box2{
+            background-color: #eee;
+            margin-top:100px;
+        }
+        .box3{
+            height:50px;
+            background-color: red;
+            padding-top:50px;
+        }
+        .box4{
+            width:50px;
+            height:50px;
+            background-color: orange;
+            /* margin-top:50px; */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 
+        垂直外边距的重叠（折叠）
+            - 相邻的垂直方向外边距会发生重叠现象
+            - 兄弟元素
+                都是正值：取较大值
+                一正一负：取和
+                都是负值：取绝对值较大
+                （兄弟元素之间的外边距的重叠，对于开发是有利的，一般不需要处理）
+            - 父子元素 
+                - 父子元素间相邻外边距，子元素的会传递给父元素（上外边距）
+                - 父子外边距的折叠会影响到页面的布局，必须要进行处理
+                    - 解决方案
+                        - 外边距 ，会造成布局差错
+                            - 设置父盒子的border-top，将两者隔离，不相邻就会不发生折叠
+                        - 内边距 ，但是注意要改变父元素的高度
+
+
+
+     -->
+     <div class="box1">
+        1
+     </div>
+     <div class="box2">
+        2
+     </div>
+     <div class="box3">
+        <div class="box4"></div>
+     </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width:200px;
+            height:200px;
+            background-color: #bfa;
+            position: relative;
+        }
+        .box2{
+            /* width:100px; */
+            width:auto;
+            height:100px;
+            background-color: orange;
+            position: absolute;
+            left:0;
+            right:0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        其他性质一样，只是自动调整的顺序
+            - left/right > width > margin-right > margin-left （在为auto的时候）
+            - left等定位默认是auto；
+     -->
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

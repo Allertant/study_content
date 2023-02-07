@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        // 使用addEventListener绑定的函数取消默认行为，不能使用return false 使用event.preventDefault()该方法调用后取消默认行为
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            box1.onwheel = function (event) {
+                if (event.wheelDelta > 0 && event.target.clientHeight >= 50)  this.style.height = event.target.clientHeight - 10 + 'px'
+                if (event.wheelDelta < 0 && event.target.clientHeight <= 2500)  this.style.height = event.target.clientHeight + 10 + 'px'
+                return false; // 阻止默认行为
+            }
+        }
+    </script>
+</head>
+
+<body style="height:2000px;">
+    <div id="box1">
+        
+    </div>
+</body>
+
+</html>

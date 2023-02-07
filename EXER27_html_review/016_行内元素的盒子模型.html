@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        span{
+            background-color: yellow;
+            /* width:100px; */
+            /* padding:200px; */
+        }
+        .box1{
+            width:100px;
+            height: 100px;
+            background-color: #bfa;
+        }
+        a{
+            background-color: orange;
+            display:inline-block;
+            padding:20px;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        行内元素的盒模型
+            - 行内元素不支持设置高度和宽度
+            - 支持设置padding，但垂直方向上不影响布局
+            - 支持设置border，但垂直方向上不影响布局
+        display:设置显示类型，如果不显示则不占位置
+            - block 块元素
+            - inline 行内元素
+            - inline-block 行内块元素
+            - table 表格
+            - none 不显示
+        visibility：如果不显示仍占据位置
+            - visiable 默认值，正常显示
+            - hidden 隐藏
+     -->
+     <span>我是span元素</span>
+     <div class="box1"></div>
+     <a href="javascript:;">我是超链接</a>
+     <a href="javascript:;">我是超链接2</a>
+     我是文章末尾
+</body>
+</html>

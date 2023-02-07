@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+
+        #line {
+            position: absolute;
+            width: 2px;
+            top: 0;
+            left: 800px;
+            height: 100%;
+            background-color: black;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var btn01 = document.getElementById('btn01')
+            var timer
+            btn01.onclick = function () {
+                clearInterval(timer)
+                timer = setInterval(function () {
+                    var oldValue = box1.offsetLeft;
+                    var newValue = oldValue+13;
+                    if(newValue>=800) newValue=800
+                    box1.style.left = newValue + 'px';
+                    if (newValue === 800) clearInterval(timer);
+                }, 30)
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点击按钮以后使box1向右移动</button> <br> <br>
+    <div id="box1"></div>
+    <div id="line"></div>
+</body>
+
+</html>

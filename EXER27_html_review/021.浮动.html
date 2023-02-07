@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .box{
+            width:200px;
+            height:200px;
+            background-color: yellow;
+            /* overflow: hidden; */
+        }
+        .box1,.box2,.box3,.box4,.box5{
+            height:100px;
+            width:100px;
+            background-color: #bfa;
+            float:left;
+        }
+        .box2{
+            /* float:none; */
+            background-color: #eee;
+        }
+        .box3{
+            background-color: lightgreen;
+        }
+        .box4{
+            background-color: lightblue;
+        }
+        .box5{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        浮动
+            - 通过浮动可以使一个元素向其父元素的左侧或右侧移动
+                使用float属性来设置元素的浮动
+                    none 默认值，元素不浮动
+                    left 元素向左浮动
+                    right 元素向右浮动
+                使用浮动后，水平布局的等式不需要强制成立了
+                    元素设置浮动后，会完全从文档流中脱离，不再占用文档流的位置
+                        所以元素下边的还在文档流中的元素会自动向上移动
+            - 总结浮动的特点
+                - 浮动元素会完全脱离文档流，不再占据文档流中的位置
+                - 设置浮动以后，元素会向父元素的左侧或右侧移动
+                    设置left，向左移动
+                    设置right，向右移动
+                - 浮动元素默认不会从父元素中移出
+                - 浮动元素向左移动或向右移动时，不会超过它前面的其他浮动元素
+                - 如果浮动元素的上边是一个没有浮动的块元素，则浮动元素无法上移
+                    如果前一个兄弟元素是浮动元素，那么后一个元素仍然会向上/前移动
+                - 浮动元素不会超过它上边的浮动的兄弟元素，最多就是和它一样高 
+            - 浮动的主要作用是让页面中的元素可以水平排列
+                - 通过浮动可以制作一些水平方向的布局 
+     -->
+    <div class="box">
+        <div class="box1">
+
+        </div>
+        <div class="box2">
+    
+        </div>
+        <div class="box3">
+
+        </div>
+        <div class="box4"></div>
+        <div class="box5"></div>
+    </div>
+</body>
+</html>

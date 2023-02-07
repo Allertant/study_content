@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 600px;
+            height: 600px;
+            background-color: #bfa;
+            position: relative;
+        }
+
+        #box2 {
+            width: 30px;
+            height: 30px;
+            background-color: orange;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+
+            var direction = 39;
+            var speed = 30
+            var interval;
+
+            
+
+
+            function move() {
+                switch (direction) {
+                    case 37:
+                        if (box2.offsetLeft === 0) return console.log('left');
+                        box2.style.left = box2.offsetLeft - 10 + 'px'
+                        break;
+                    case 38:
+                        if (box2.offsetTop === 0) return console.log('top');
+                        box2.style.top = box2.offsetTop - 10 + 'px'
+                        break;
+                    case 39:
+                        if (box2.offsetLeft === box1.clientWidth - box2.clientWidth) return console.log('right');
+                        box2.style.left = box2.offsetLeft + 10 + 'px'
+                        break;
+                    case 40:
+                        if (box2.offsetTop === box1.clientHeight - box2.clientHeight) return console.log('bottom');
+                        box2.style.top = box2.offsetTop + 10 + 'px'
+                        break;
+                    default:
+                        console.log('invaild input')
+                }
+            }
+
+            function directionController(event) {
+                // 左 上 右 下：37 38 39 40
+                console.log(event.ctrlKey)
+                speed = event.ctrlKey ? 15 : 30
+                console.log(speed)
+                direction = event.keyCode
+                //开启定时器控制移动
+                if(interval) return 
+                interval = setInterval(move, speed)
+            }
+
+            function clear(){
+                clearInterval(interval)
+                interval=undefined
+            }
+
+            document.addEventListener('keydown', directionController);
+            document.addEventListener('keyup', clear);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box1">
+        <div id="box2"></div>
+    </div>
+</body>
+
+</html>

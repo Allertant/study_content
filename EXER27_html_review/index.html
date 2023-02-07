@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #fruit_tbl,#add_fruit_div{
+            width:50%;
+            margin:50px auto;
+            border-collapse:collapse;
+        }
+        #fruit_tbl tr td{
+            text-align:center;
+        }
+        #fruit_tbl tr td img{
+            padding: auto;
+        }
+        .btn{
+            border:1px solid lightgray;
+            width:80px;
+            height:24px;
+        }
+    </style>
+</head>
+<body>
+    <table id="fruit_tbl" border="1">
+        <tr>
+            <td>名称</td>
+            <td>单价</td>
+            <td>数量</td>
+            <td>小计</td>
+            <td>操作</td>
+        </tr>
+        <tr>
+            <td>苹果</td>
+            <td>5</td>
+            <td>20</td>
+            <td>100</td>
+            <td><img src="./123.jpg" height="16px"/></td>
+        </tr>
+        <tr>
+            <td>西瓜</td>
+            <td>3</td>
+            <td>20</td>
+            <td>60</td>
+            <td><img src="./123.jpg" height="16px"/></td>
+        </tr>
+        <tr>
+            <td>橘子</td>
+            <td>2</td>
+            <td>20</td>
+            <td>40</td>
+            <td><img src="./123.jpg" height="16px"/></td>
+        </tr>
+        <tr>
+            <td>菠萝</td>
+            <td>7</td>
+            <td>18</td>
+            <td>126</td>
+            <td><img src="./123.jpg" height="16px"/></td>
+        </tr>
+        <tr>
+            <td>总计</td>
+            <td colspan="4">999</td>
+        </tr>
+    </table>
+    <hr>
+    <div id="add_fruit_div">
+        <table>
+            <tr>
+                <td>名称</td>
+                <td><input type="text" id="fname" /></td>
+            </tr>
+            <tr>
+                <td>单价</td>
+                <td><input type="number" id="price" /></td>
+            </tr>
+            <tr>
+                <td>数量</td>
+                <td><input type="number" id="number" /></td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <input type="button" class="btn" onclick="addRow()" value="添加">
+                    <input type="button" class="btn" onclick="resetInput()" value="重填">
+                </th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        window.onload=init
+        function init(){
+            updateTotalSum()
+            var fruitTbl=document.getElementById("fruit_tbl")
+            var rows=fruitTbl.rows
+            for(i=1;i<rows.length-1;i++){
+                var tr=rows[i]
+                tr.onmouseover=changeColor
+                tr.onmouseout=clearColor
+                var tds=tr.cells
+                tds[1].onmouseover=displayHand
+                tds[1].onclick=displayInput
+                tds[4].onclick=deleteTd
+            }
+        }
+        function changeColor(){
+            if(event && event.srcElement && event.srcElement.tagName==='TD'){
+                var td=event.srcElement
+                var tr=td.parentElement
+                tr.style.backgroundColor = 'darkblue'
+                var tds=tr.cells
+                for(i=0;i<tds.length;i++){
+                    tds[i].style.color='white'
+                }
+            }
+                
+        }
+        function clearColor(){
+            if(event && event.srcElement && event.srcElement.tagName==='TD'){
+                var td=event.srcElement
+                var tr=td.parentElement
+                tr.style.backgroundColor = 'white'
+                var tds=tr.cells
+                for(i=0;i<tds.length;i++){
+                    tds[i].style.color='black'
+                }
+            }
+        }
+        function displayHand(){
+            var td=event.srcElement
+            td.style.cursor='pointer'
+        }
+        function displayInput(){
+            var td=event.srcElement
+            if(td.firstChild && td.firstChild.nodeType===3){
+                var oldVal=td.innerText
+                td.innerHTML = '<input type="text" size=4 />'
+                var input=td.firstChild
+                input.value=oldVal
+                input.select()
+                input.onblur=updatePrice
+                input.onkeydown=controlInput
+            }
+        }
+        function updatePrice(){
+            var input=event.srcElement
+            var newVal=input.value
+            var td=input.parentElement
+            td.innerHTML=newVal
+            updateSum(td)
+        }
+        function updateSum(td){
+            var tr=td.parentElement
+            var tds=tr.cells
+            var singlePrice=parseInt(tds[1].innerText)
+            var number=parseInt(tds[2].innerText)
+            tds[3].innerHTML=singlePrice*number
+            updateTotalSum()
+        }
+        function updateTotalSum(){
+            var table=document.getElementById('fruit_tbl')
+            var rows=table.rows
+            var totalSum=0
+            for(i=1;i<rows.length-1;i++){
+               totalSum += parseInt(rows[i].cells[3].innerText)
+            }
+            rows[rows.length-1].cells[1].innerHTML=totalSum
+        }
+        function deleteTd(){
+            if(window.confirm('Are you sure you want to delete')&&event.srcElement.tagName=='IMG'){
+                var td=event.srcElement.parentElement
+                var tr=td.parentElement
+                var table=document.getElementById('fruit_tbl')
+                console.log(tr.rowIndex)
+                table.deleteRow(tr.rowIndex)
+                updateTotalSum()
+            }      
+        }
+        function controlInput(){
+            var kc=event.keyCode
+            if(!(kc>=48 && kc<=57  || kc===8 || kc===13)){
+                event.returnValue=false
+                
+            }
+            if(kc===13){
+                updatePrice()
+            }
+        }
+        function addRow(){
+            var fruitTable=document.getElementById('fruit_tbl')
+            var addFruitTable=document.getElementById('add_fruit_div').firstElementChild
+            var fname=addFruitTable.rows[0].cells[1].firstElementChild.value
+            var price=parseInt(addFruitTable.rows[1].cells[1].firstElementChild.value)
+            var number=parseInt(addFruitTable.rows[2].cells[1].firstElementChild.value)
+            var sum=price*number
+            if(!fname || !number || !price){
+                return alert('输入不全')
+            }
+            fruitTable.insertRow(1)
+            for(i=0;i<5;i++){
+                fruitTable.rows[1].insertCell()
+            }
+            fruitTable.rows[1].cells[0].innerHTML=fname
+            fruitTable.rows[1].cells[1].innerHTML=price
+            fruitTable.rows[1].cells[2].innerHTML=number
+            fruitTable.rows[1].cells[3].innerHTML=sum
+            fruitTable.rows[1].cells[4].innerHTML='<img src="./123.jpg" height="16px"/>'
+            init()
+        }
+        function resetInput(){
+            var addFruitTable=document.getElementById('add_fruit_div').firstElementChild
+            addFruitTable.rows[0].cells[1].firstElementChild.value=''
+            addFruitTable.rows[1].cells[1].firstElementChild.value=''
+            addFruitTable.rows[2].cells[1].firstElementChild.value=''
+        }
+    </script>
+</body>
+</html>

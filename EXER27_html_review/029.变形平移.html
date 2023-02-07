@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            margin:0 auto;
+        }
+        .box1{
+            margin-top:50px;
+            background-color: #bfa;
+            /* 使用百分比，是相对于自身计算的 */
+            /* 一个元素只有一个transition属性 */
+            transition:all 1s;
+        }
+        .box1:hover{
+            transform:translateX(50px) translateY(50px) translateZ(50px);
+        }
+        .box2{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            top:200px;
+            position: absolute;
+        }
+
+        #line {
+            position: absolute;
+            width: 2px;
+            top: 0;
+            left: 800px;
+            height: 100%;
+            background-color: black;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+            var btn01 = document.getElementById('btn01')
+            var btn02 = document.getElementById('btn02')
+            var btn03 = document.getElementById('btn03')
+            var btn04 = document.getElementById('btn04')
+            btn01.onclick = () => run(box1, 12, 800 , 'left')
+            btn02.onclick = () => run(box1, 11, 0 , 'left')
+            btn03.onclick = () => run(box2, 20, 800 , 'left')
+            btn04.onclick = () => run(box2, 20, 800 , 'width',()=>{
+                run(box2,20,800,'height',()=>{
+                    run(box2,20,0,'top',()=>{
+                        run(box2,20,100,'width',()=>{
+                            run(box2,20,100,'height')
+                        })
+                    })
+                })
+            })
+
+            function run(domObj, speed, destination,attr,callback=function(){console.log('动画执行完毕')}) {
+                var oldValue = parseInt(getStyle(domObj,attr))
+                clearInterval(domObj.timer)
+                if(destination < oldValue) speed = -speed;
+                domObj.timer = setInterval(function () {
+                    oldValue = parseInt(getStyle(domObj,attr))
+                    var newValue = oldValue + speed;
+                    if (speed < 0 && newValue <= destination || speed > 0 && newValue >= destination) newValue = destination
+                    domObj.style[attr] = newValue + 'px';
+                    if (newValue === destination) {clearInterval(domObj.timer); callback()}
+                }, 30)
+            }
+
+            function getStyle(obj,attr) {
+                return getComputedStyle(obj,null)[attr]
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点击按钮以后使box1向右移动</button>
+    <button id="btn02">点击按钮以后使box1向左移动</button>
+    <button id="btn03">点击按钮以后使box2向右移动</button>
+    <button id="btn04">测试按钮</button>
+    <br> <br>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="line"></div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+        /*
+          对象
+               - 内建对象：ES标准中定义的对象，在任何的ES实现中都可以使用
+               - 宿主对象：浏览器提供的对象：DOM BOM
+               - 自定义对象：由开发人员创建的对象
+         */
+
+
+        // 创建对象
+        // 使用new关键字调用的函数，叫构造函数（专门用来创建对象的函数）
+        var obj = new Object();
+        console.log(obj)
+        console.log(typeof obj)
+        // 向对象中添加属性
+        obj.name="shiyixi"
+
+
+        // 读取属性
+        obj.age=18
+        // 对象.属性 
+        console.log(obj.name,obj.age)
+        // 对象["属性"]：应对特殊的属性名
+        console.log(obj["name"],obj["age"])
+        // 常用的方式
+        var n = "age"
+        console.log(obj[n])
+
+        // 修改属性
+        obj.name="时易曦"
+        obj.age=22
+        console.log(obj.name,obj.age)
+
+        // 删除属性
+        console.log(obj)
+        delete obj.name
+        delete obj.age
+        console.log(obj)
+
+        /*
+         * 属性类型可以是任意类型
+            - 甚至可以是对象
+         */
+        obj.test = new Object()
+
+         /*
+            in 运算符：属性名 in 对象
+          */ 
+         console.log("test" in obj)
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            width: 520px;
+            height: 333px;
+            background-color: #bfa;
+            padding: 10px 0;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #img-list {
+            list-style: none;
+            position: absolute;
+            left: 0px;
+            /* width:2550px; */
+        }
+
+        #img-list li {
+            float: left;
+            margin: 0 10px;
+        }
+
+        #nav-div {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #nav-div a {
+            display: block;
+            float: left;
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            margin: 0 5px;
+            opacity: .5;
+        }
+
+        #nav-div a:hover {
+            background-color: #000;
+        }
+    </style>
+    <script type="text/javascript" src="./js/setStyle.js"></script>
+    <script>
+        window.onload = function () {
+            // dom 
+            var imgList = document.getElementById("img-list")
+            var imgs = document.getElementsByTagName('img')
+            var allA = document.getElementsByTagName('a')
+            var index = 0
+            var timer 
+
+            // static setting
+            imgList.style.width = 520 * imgs.length + 'px'
+            allA[index].style.backgroundColor = 'black';
+
+
+            //click event
+            for (let i = 0; i < allA.length; i++) {
+
+                allA[i].onclick = function () {
+                    clearInterval(timer)
+                    run(imgList,30,-520 * i,'left',()=>{
+                        allA[index].style.backgroundColor = ''
+                        index = i;
+                        allA[i].style.backgroundColor = 'black'
+                        autoChange()
+                    })
+                }
+            }
+
+
+            // auto setting
+            autoChange()
+
+            // auto-function
+            function autoChange(){
+                timer = setInterval(()=>{
+                    var i = (index+1)%imgs.length
+                    run(imgList,30,-520 * i,'left',()=>{
+                        if(i===allA.length){
+                            index = 0
+                            imgList.style.left = 0 + 'px'
+                            allA[allA.length-1].style.backgroundColor = ''
+                            allA[index].style.backgroundColor = 'black'
+                            console.log(index)
+                            return 
+                        }
+                        allA[index].style.backgroundColor = ''
+                        index = i;
+                        allA[i].style.backgroundColor = 'black'
+                    })
+                },1000)
+            }       
+        }
+    </script>
+</head>
+
+<body>
+    <div id="outer">
+        <ul id="img-list">
+            <li><img src="./image/1.jpg" alt=""></li>
+            <li><img src="./image/2.jpg" alt=""></li>
+            <li><img src="./image/3.jpg" alt=""></li>
+            <li><img src="./image/4.jpg" alt=""></li>
+            <li><img src="./image/5.jpg" alt=""></li>
+            <li><img src="./image/1.jpg" alt=""></li>
+        </ul>
+        <div id="nav-div">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://www.163.com/favicon.ico">
+    <title>Document</title>
+</head>
+<body>
+    <!--BOM
+        浏览器对象模型
+            - window 全局对象，整个浏览器的窗口
+            - Navigator 当前浏览器的信息
+            - Location 浏览器的地址栏信息,跳转页面
+            - History 历史记录，操作浏览器向前后翻
+            - Screen 用户的屏幕信息
+        都作为window对象的属性进行 保存
+    -->
+    <script>
+        if(navigator.userAgent.includes("Firefox")){
+            alert('firefox')
+        }else if(navigator.userAgent.includes('Edg')){
+            alert('Edg')
+        }else if(navigator.userAgent.includes('Chrome')){
+            alert('chrome')
+        }
+    </script>
+</body>
+</html>

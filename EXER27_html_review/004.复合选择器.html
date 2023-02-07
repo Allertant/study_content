@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p+span{
+            color:red;
+        }
+        p~span{
+            color:lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        交集选择器：xxxyyy
+        并集选择器：xxx,yyy
+        子元素选择器：xxx>yyy
+        后代选择器：xxx yyy
+        兄弟选择器
+            - 下一个兄弟：xxx + yyy：选中xxx的下一个兄弟元素yyy（不一定是相邻的）
+            - 后面的所有兄弟：xxx ~ yyy：选中xxx后面的所有兄弟元素yyy
+     -->
+    <p>我是p元素1</p>
+    <p>我是p元素2</p>
+    <span>我是span元素</span>
+    <span>我是span元素</span>
+    <span>我是span元素</span>
+    <span>我是span元素</span>
+</body>
+</html>

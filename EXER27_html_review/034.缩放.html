@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width:100px;
+            height:100px;
+            background-color: #bfa;
+            transition: 2s;
+            margin:100px auto;
+            border:1px solid black;
+        }
+        .box1:hover{
+            /* 
+                scale
+                scaleX
+                scaleY
+            */
+            transform:scale(4,5)
+        }
+        .img-wrapper{
+            height: 200px;
+            width: 200px;
+            border:1px red solid;
+            overflow:hidden;
+        }
+        img{
+            transition:2s;
+            width: 100%;
+        }
+        .img-wrapper:hover img{
+            /*
+                transform-origin：缩放的原点 
+                    default:center
+             */
+            transform-origin:0 0 ;
+            transform:scale(1.2,1.2)
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="img-wrapper">
+        <img src="./image/an.jpg" alt="">
+    </div>
+</body>
+</html>

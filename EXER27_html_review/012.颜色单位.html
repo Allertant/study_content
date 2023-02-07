@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+        }
+        .box1{
+            background-color: green; 
+        }
+        .box2{
+            background-color: rgb(120,120,120,.3);
+        }
+        .box3{
+            background-color: #bfa;
+        }
+        .box4{
+            background-color: hsl(10,100%,50%);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 
+        颜色单位
+            - 颜色名
+            - RGB值 （RGBA,A控制不透明度，1表示完全不透明，0表示完全透明，.5表示半透明）
+            - 十六进制 
+                #xxxxxx，颜色每两位重复，则可以简写为一位
+                R red
+                G green
+                B blue
+            - HSL（A）值 
+                H色相 颜色环 0~360
+                S饱和度 颜色浓度 0~100%
+                L亮度 0~100% 黑色->白色
+
+     -->
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+a {
+  text-decoration: none;
+  color: #fff;
+}
+a:hover {
+  color: #4e4e4e;
+}
+.top-bar-wrapper {
+  background-color: #000;
+}
+.top-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 48px;
+  background-color: #000;
+  padding: 0 14px;
+  line-height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left-menu:hover .nav {
+  display: block;
+}
+.left-menu:hover .menu-icon li:nth-child(1) {
+  top: 18px;
+  transform: rotateZ(40deg);
+}
+.left-menu:hover .menu-icon li:nth-child(2) {
+  top: 24px;
+  display: none;
+}
+.left-menu:hover .menu-icon li:nth-child(3) {
+  top: 30px;
+  transform: rotateZ(-40deg);
+}
+.left-menu .nav {
+  display: none;
+  position: absolute;
+  margin-top: 48px;
+  background-color: #000;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+.left-menu .nav li {
+  width: 80%;
+  margin: 0 auto;
+}
+.left-menu .nav li a {
+  display: block;
+  line-height: 44px;
+  font-size: 14px;
+  border-bottom: 1px solid #4e4e4e;
+}
+.left-menu .nav li span {
+  margin-left: 6px;
+}
+.left-menu .menu-icon {
+  width: 18px;
+  height: 48px;
+  position: relative;
+}
+.left-menu .menu-icon li {
+  width: 18px;
+  height: 1px;
+  background-color: #fff;
+  position: absolute;
+  transform-origin: left center;
+  transition: 0.3s;
+}
+.left-menu .menu-icon li:nth-child(1) {
+  top: 18px;
+}
+.left-menu .menu-icon li:nth-child(2) {
+  top: 24px;
+}
+.left-menu .menu-icon li:nth-child(3) {
+  top: 30px;
+}
+.logo a {
+  text-indent: -9999px;
+  display: block;
+  width: 122px;
+  height: 32px;
+  background-image: url(../../image/dff63979.sprites-index@2x.png);
+  background-size: 400px 400px;
+}
+@media screen {
+}
+@media screen and (min-width: 768px) {
+  body .left-menu {
+    flex: auto;
+    order: 2;
+  }
+  body .left-menu:hover .nav {
+    display: flex;
+  }
+  body .left-menu .nav {
+    display: flex;
+    position: static;
+    margin: 0;
+    justify-content: space-around;
+  }
+  body .left-menu .nav li {
+    width: auto;
+  }
+  body .left-menu .nav li a {
+    line-height: 48px;
+    border-bottom: none;
+  }
+  body .left-menu .nav li span {
+    display: none;
+  }
+  body .left-menu .menu-icon {
+    display: none;
+  }
+  body .logo {
+    order: 1;
+  }
+  body .user-info {
+    order: 3;
+  }
+}
+/*# sourceMappingURL=./style.css.map */

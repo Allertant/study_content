@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            使用媒体查询
+            语法：
+                @media 查询规则
+                媒体类型
+                    all 所有设备
+                    print 打印机
+                    screen 带屏幕的设备
+                    speech 屏幕阅读器
+                - 使用逗号连接多个媒体类型，表示“或”
+                    这样他们之间就是一个“或”的关系
+                - 一般使用all 或 screen 或 only screen
+                    使用only 表示“只有”这种媒体类型才会应用上
+                    主要使为了兼容一些老版本的浏览器（老版本不兼容@media，在读取代码时遇到only后，就会直接忽略掉后面的代码）
+        */
+        @media all,screen {
+            body {
+                background-color: #bfa;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        响应式
+            指的是网页可以根据不同的设备或窗口大小来呈现出不同的效果
+            使用响应式布局，可以使一个网页适用于所有设备
+            响应式布局的关键：媒体查询
+            通过媒体查询，可以为不同的设备，或设备不同状态来分别设置样式
+     -->
+</body>
+</html>

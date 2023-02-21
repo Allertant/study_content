@@ -1,0 +1,163 @@
+// 设置超链接的样式
+a{
+    text-decoration:none;
+    color:#fff;
+    &:hover{
+        color:#4e4e4e;
+    }
+
+}
+//设置导航条全部内容
+.top-bar-wrapper{
+    background-color: #000;
+}
+// 导航条的外部容器
+.top-bar{
+    max-width:1200px;
+    margin:0 auto;
+    height:48px;
+    background-color: #000;
+    padding:0 14px;
+    line-height:40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+
+// 设置左侧的导航图标
+.left-menu{
+    &:hover{
+        .nav{
+            display:block;
+        }
+        // 鼠标移入以后的效果
+        // 正常项目这个效果需要使用js来实现
+        .menu-icon{
+            li:nth-child(1){
+                top:18px;
+                // 向下旋转
+                transform:rotateZ(40deg)
+            }
+            li:nth-child(2){
+                top:24px;
+                display:none;
+            }
+            li:nth-child(3){
+                top:30px;
+                transform:rotateZ(-40deg)
+            }
+        }
+    }
+    // 设置菜单
+    .nav{
+        display:none;
+        position:absolute;
+        margin-top:48px;
+        // 设置背景颜色
+        background-color: #000;
+        // 以下设置利用盒子模型（加left 定位的盒子模型），设置width和heigh为全部
+        left:0;
+        bottom:0;
+        right:0;
+        top:0;
+        li{
+            width:80%;
+            margin:0 auto;
+            a{
+                display: block;
+                line-height:44px;
+                font-size:14px;
+                border-bottom:1px solid #4e4e4e;
+            }
+            span{
+                margin-left:6px;
+            }
+        }
+    }
+    .menu-icon{
+        // background-color: #bfa;
+        width:18px;
+        height:48px;
+        position:relative;
+        li {
+            width:18px;
+            height:1px;
+            background-color: #fff;
+            position:absolute;
+            // 修改变形的原点
+            transform-origin:left center;
+            // 过渡
+            transition:.3s;
+        }
+        li:nth-child(1){
+            top:18px;
+        }
+        li:nth-child(2){
+            top:24px;
+        }
+        li:nth-child(3){
+            top:30px;
+        }
+       
+    }
+}
+
+// 设置logo
+.logo{
+    a {
+        text-indent:-9999px;
+        display:block;
+        width:122px;
+        height:32px;
+        background-image: url(../../image/dff63979.sprites-index@2x.png);
+        background-size:400px 400px;
+    }
+}
+
+// 设置媒体查询
+@media screen{
+    // 断点
+    @media (min-width:768px){
+        body{
+            // background-color: #bfa;
+            .left-menu{
+                &:hover{
+                    .nav{
+                        display:flex;
+                    }
+                }
+                flex:auto;
+                order:2;
+                // 显示菜单
+                .nav{
+                    display:flex;
+                    position:static;
+                    margin:0;
+                    justify-content: space-around;
+                    li{
+                        width:auto;
+                        a{
+                            line-height:48px;
+                            border-bottom:none;
+                        }
+                        span{
+                            display:none;
+                        }
+                    }
+                }
+                // 隐藏菜单的图标
+                .menu-icon{
+                    display:none;
+                }
+            }
+            .logo {
+                order:1;
+            }
+            .user-info{
+                order:3;
+            }
+        }
+    }
+}

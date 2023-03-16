@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">节流</button>
+    <button id="btn2">防抖</button>
+    <script>
+        // 节流：一端时间内，函数的频繁触发只让函数的第一次生效，后面的不生效
+        // 实现1
+        function throttle1(fn,delay){
+            var lastTime = 0
+            return function(){
+                var nowTime = Date.now()
+                if(nowTime-lastTime > delay){
+                    fn()
+                    lastTime = nowTime
+                }
+            }
+        }
+        function throttle2(fn,delay){
+            var flag = false // 初始化没人使用
+            return function(){
+                if(flag){ // 有人使用则直接返回
+                    return
+                }
+                // 没有使用
+                flag=true // 设置为有人正在使用
+                setTimeout(()=>{
+                    fn()
+                    flag = false // 函数执行完了，设置回没人使用
+                },delay)
+            }
+        }
+        // 防抖：一个需要频繁触发的函数，在规定时间内，只让最后一次生效
+        function debounce(fn,delay){
+            var timer = null
+            return function(){
+                clearInterval(timer)
+                timer = setTimeout(()=>{
+                    fn.apply(this)
+                },delay)
+            }
+        }
+
+        var btn1 = document.getElementById('btn1')
+        var btn2 = document.getElementById('btn2')
+        btn1.onclick = throttle2(()=>{console.log('jieliu')},1000)
+        btn2.onclick = debounce(()=>{console.log('fangdou')},1000)
+    </script>
+</body>
+</html>
